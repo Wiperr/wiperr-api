@@ -1,0 +1,39 @@
+{
+  "name": "Booking",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date": {
+      "type": "string",
+      "required": true
+    },
+    "time": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "geopoint"
+    },
+    "address": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customer": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": ""
+    },
+    "service": {
+      "type": "belongsTo",
+      "model": "Service",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

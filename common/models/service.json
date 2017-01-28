@@ -1,0 +1,34 @@
+{
+  "name": "Service",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": [
+        "string"
+      ],
+      "required": true
+    },
+    "price": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "bookings": {
+      "type": "hasMany",
+      "model": "Booking",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

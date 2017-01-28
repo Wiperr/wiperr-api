@@ -1,0 +1,9 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "wiperr-dev",
+    "name": "db",
+    "connector": "mongodb"
+  }
+}
