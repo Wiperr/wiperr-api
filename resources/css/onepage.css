@@ -1,5 +1,5 @@
  @charset "utf-8";
-/* CSS Document 
+/* CSS Document
 
 Table Of Content
 
@@ -23,8 +23,8 @@ Table Of Content
 
 + #facts
 	-.number-counters
-		-.counters-item 
-		
+		-.counters-item
+
 + #responsive
 	-.responsive-pic
 	-.r-test
@@ -43,25 +43,25 @@ Table Of Content
 + #thinkers
 	-.thinker-wrap
 		-.social-contact
-	
+
 + #project
-   - .work-filter 
+   - .work-filter
 	- .work-item
 		- .overlay
 			- .overlay-inner
 
 
 + #pricing
-	-.pricing 
+	-.pricing
 	-.pricing_tenzin
-		-.pricing_item 
+		-.pricing_item
 			-.pricing_title
 			-.pricing_price
 			-.pricing_sentence
 			-.pricing_list
 			-.pricing_action
 
-			
+
 + #testinomial
 	-#testinomial-slider
 	-.owl-carousel
@@ -71,7 +71,7 @@ Table Of Content
 	-#publication-slider
 	-.owl-carousel
 		.item
-		
+
 + #contact
 	-#letstalk
 
@@ -79,7 +79,7 @@ Table Of Content
 	-.blog-wrap
 		-.blog-content
 			-.blog-item
-		
+
 
 + footer
 	-.breadcrumb
@@ -97,7 +97,7 @@ body{
     font-family: "Open Sans", sans-serif;
 	 overflow-x: hidden;
 	 font-size:14px;
-	 
+
 }
 ul , ol{
 	margin:0;
@@ -105,7 +105,7 @@ ul , ol{
 	list-style:none;
 }
 a ,
-a:hover , 
+a:hover ,
 a:focus{
 	text-decoration:none;
 	outline:none;
@@ -113,21 +113,21 @@ a:focus{
 }
 input[type="submit"]{
 	background-color:transparent;
-}	
+}
 button:focus {
     outline: medium none;
 }
 h1,
-h2, 
-h3, 
-h4, 
+h2,
+h3,
+h4,
 #testinomial-slider .item h5{
 	margin:0;
 }
 h1{
 	font-size:46px;
 }
-h2, 
+h2,
 h3,
 h4{
 	text-transform:capitalize;
@@ -162,14 +162,14 @@ p.title{
 	margin-bottom:40px;
 }
 .padding{
-	padding:90px 0;
+	padding:20px 0;
 }
 .top-padding{
 	padding-top:90px;
 }
 
 .section-padding{
-	padding-top:130px!important;
+	padding-top: 90px!important;
 }
 
 .padding-botom{
@@ -235,7 +235,7 @@ p.title{
 .btn-green{
 	background:#82B440;
 	border:1px solid transparent;
-}	
+}
 .btn-blue{
 	background:#07AAA5;
 	border:1px solid transparent;
@@ -301,7 +301,7 @@ a.readmore:hover, a.readmore:focus{
 /* Bounce To Top */
 .bounce-top,
 .bounce-green,
-.bounce-white, 
+.bounce-white,
 .bounce-pink{
   display: inline-block;
   vertical-align: middle;
@@ -322,14 +322,14 @@ a.readmore:hover, a.readmore:focus{
 }
 .bounce-top:before{
 	background: #07AAA5;
-	
+
 }
 .bounce-green:before{
 	background:#82B440;
 }
 .bounce-white:before{
 	background: #fff;
-}	
+}
 .bounce-top:before,
 .bounce-green:before,
 .bounce-white:before,
@@ -367,8 +367,8 @@ a.readmore:hover, a.readmore:focus{
 .bounce-white:hover, .bounce-white:focus{
 	color:#1b1d1f !important;
 	border:1px solid #fff;
-}	
-.bounce-top:hover:before, .bounce-top:focus:before, 
+}
+.bounce-top:hover:before, .bounce-top:focus:before,
 .bounce-green:hover::before, .bounce-green:focus::before,
 .bounce-white:hover::before, .bounce-white:focus::before,
 .bounce-pink:hover::before, .bounce-pink:focus::before{
@@ -449,10 +449,10 @@ ul.top-right li a:hover,
 	-ms-transition: all .3s ease;
    -o-transition:all .3s ease;
 	transition:all .3s ease;
-}	
+}
 #main-navigation {
   position: absolute;
- 
+
 }
 #navigation.affix {
   background-color: #fff;
@@ -467,7 +467,7 @@ ul.top-right li a:hover,
 	z-index:999;
 	width: 100%;
 
-}	
+}
 .navbar-default {
   background-color: transparent;
   border-color: transparent;
@@ -512,7 +512,7 @@ ul.top-right li a:hover,
 #navigation.affix .navbar-default .navbar-nav > li > a{
 	color: #222;
 	padding:22px 0;
-		
+
 }
 .navbar-default .navbar-nav > li > a:hover,
 #navigation.affix .navbar-default .navbar-nav > li > a:hover{
@@ -526,7 +526,7 @@ ul.top-right li a:hover,
 	color:#07AAA5;
 	border-bottom:3px solid #82b440;
 	background-color:transparent;
-}	
+}
 
 .navbar-toggle {
   background: transparent !important;
@@ -547,7 +547,7 @@ ul.top-right li a:hover,
 }
 #navigation.affix .navbar-toggle .icon-bar{
 	background-color:#222 !important;
-}	
+}
 .navbar-toggle .top-bar {
   transform: rotate(45deg);
   transform-origin: 10% 10%;
@@ -629,7 +629,7 @@ ul.top-right li a:hover.instagram{
 /* ------------- Push Menu ------------ */
 #main-navigation.noborder {
   box-shadow: 0 0;
-}	
+}
 .main-button {
   height: auto;
   position: fixed;
@@ -705,12 +705,12 @@ ul.top-right li a:hover.instagram{
   padding:15px;
   position:relative;
   text-transform: capitalize;
-  letter-spacing:1px; 
+  letter-spacing:1px;
   font-family: "raleway";
 }
 .push_nav li a:hover, .push_nav li.active a, .push_nav .active a:hover, .push_nav li.active a:focus{
 	color:#07AAA5;
-}	
+}
 /* ------------- Push Menu ------------ */
 
 
@@ -734,12 +734,12 @@ ul.top-right li a:hover.instagram{
 
 .index5 .affix-top .active a{
 	color:#07AAA5!important;
-	}		
+	}
 .index5 .affix-top .navbar-toggle .icon-bar {
     background-color: #222 !important;
 }
 
- 
+
 
 
 
@@ -761,7 +761,7 @@ ul.top-right li a:hover.instagram{
 #main-slider .tp-caption a{
 	margin:5px;
 }
-.tp-bullets{ display:none;} 
+.tp-bullets{ display:none;}
 .tp-caption{ padding:0 15px !important;}
 
 
@@ -825,7 +825,7 @@ ul.top-right li a:hover.instagram{
   margin-top:5%;
 }
 #paralax-slider .owl-controls .owl-page span{
-	background: #fff; 
+	background: #fff;
 	text-align: center;
 	height:12px;
 	width:12px;
@@ -841,7 +841,7 @@ ul.top-right li a:hover.instagram{
 
 
 /* ------------ What We Offer ------------ */
-#about{}	
+#about{}
 #about .canvas-box{
 	cursor: pointer;
 }
@@ -855,11 +855,11 @@ ul.top-right li a:hover.instagram{
   font-size:50px;
 }
 .color1{ color:#07AAA5;}
-.color2{ color:#99D8CC;}	
-.color3{ color:#EC768C;}	
-.color4{ color:#C183D6;}	
+.color2{ color:#99D8CC;}
+.color3{ color:#EC768C;}
+.color4{ color:#C183D6;}
 .color5{ color:#31AAE1;}
-.color6{ color:#82B440;}			
+.color6{ color:#82B440;}
 #about .canvas-box:hover span i,
 .counters-item:hover i,
 .we-do .do-wrap:hover i{
@@ -886,7 +886,7 @@ ul.top-right li a:hover.instagram{
 }
 #about .canvas-box:hover h4.color6{
 	color:#82B440;
-}	
+}
 #about .canvas-box h4{
 	margin-bottom:15px;
 	color:#000;
@@ -922,7 +922,7 @@ ul.top-right li a:hover.instagram{
 /*  ------------ Counters Fact Info  ------------ */
 #facts{}
 #facts .counters-item{
-	padding:26% 10%;
+	padding:8% 10%;
 	font-weight:bold;
 	vertical-align:middle;
 	color:#fff;
@@ -930,7 +930,7 @@ ul.top-right li a:hover.instagram{
 }
 #facts .counters-item h2{
 	font-family: "Open Sans", sans-serif;
-}	
+}
 
 .counters-item i {
   font-size:50px;
@@ -1063,7 +1063,7 @@ ul.top-right li a:hover.instagram{
 	-ms-box-shadow: 0 1px 1px 0 #ddd;
 	box-shadow: 0 1px 1px 0 #ddd;
 }
-	
+
 .we-do .do-wrap > .top{
 	width:100%;
 	height:72px;
@@ -1085,7 +1085,7 @@ ul.top-right li a:hover.instagram{
 }
 .we-do .do-wrap h4{
 	margin-bottom:15px;
-}		
+}
 .we-do .do-wrap p,
 .white-box p{
 	margin:0 15px;
@@ -1110,7 +1110,7 @@ ul.top-right li a:hover.instagram{
   -webkit-transition: all 0.3s linear 0.1s;
   transition: all 0.3s linear 0.1s;
   width: 100%;
-	
+
 }
 .we-do .do-wrap a:hover::before, .we-do .do-wrap a:focus::before{
 	 opacity:1;
@@ -1144,8 +1144,8 @@ ul.top-right li a:hover.instagram{
 }
 .we-do .do-wrap:hover .top, we-do .do-wrap:focus .top, .we-do .do-wrap:hover span, .we-do .do-wrap:focus span{
 	background:#82b440;
-	
-}	
+
+}
 
 /* ------------ What We Do ------------ */
 
@@ -1192,7 +1192,7 @@ ul.top-right li a:hover.instagram{
 }
 .thinker-image .overlay.green{
 	background:rgba(130,180,64,.75);
-}	
+}
 .thinker-image:hover .overlay{
 	opacity:1;
 	filter: alpha(opacity=100);
@@ -1218,14 +1218,14 @@ ul.top-right li a:hover.instagram{
 .thinker-wrap:hover .thinker-image img,  #publication-slider .item:hover .image img
 {
 	transform:scale(1.05);
-	
+
 	-webkit-transition: all 0.3s ease-in-out ;
    -moz-transition:all 0.3s ease-in-out ;
 	-ms-transition:all 0.3s ease-in-out ;
    -o-transition:all 0.3s ease-in-out ;
 	transition:all 0.3s ease-in-out;
 }
-#thinkers .thinker-wrap h3{  
+#thinkers .thinker-wrap h3{
 	margin-top:20px;
 	font-size:20px;
 }
@@ -1251,7 +1251,7 @@ ul.top-right li a:hover.instagram{
 	 opacity:1;
 	 filter: alpha(opacity=100);
 	 transform: translateY(0px)
-	
+
 }
 #thinkers .thinker-wrap ul.social-contact li a:hover.facebook{
 	color:#3b5998 !important;
@@ -1348,7 +1348,7 @@ ul.top-right li a:hover.instagram{
 }
 .item-container:hover  img{
 	transform:scale(1.2);
-	
+
 	-webkit-transition: all 0.3s ease-in-out ;
    -moz-transition:all 0.3s ease-in-out ;
 	-ms-transition:all 0.3s ease-in-out ;
@@ -1407,7 +1407,7 @@ ul.top-right li a:hover.instagram{
 	-webkit-transition: all 500ms ease-out;
 	-moz-transition: all 500ms ease-out;
 	-o-transition: all 500ms ease-out;
-	transition: all 500ms ease-out;					 
+	transition: all 500ms ease-out;
 }
 /* ------------  Gallery Filter ------------  */
 
@@ -1454,7 +1454,7 @@ ul.top-right li a:hover.instagram{
 }
 .pricing_tenzin .pricing_item.pink{
 	border-color:#EC768C;
-}	
+}
 .pricing_tenzin .pricing_item.blue{
 	border-color:#07AAA5;
 }
@@ -1498,7 +1498,7 @@ ul.top-right li a:hover.instagram{
 
 .pricing_tenzin .pricing_list {
 	font-size:14px;
-	padding:25px 0;	
+	padding:25px 0;
 	color: #8b909d;
 }
 .pricing_tenzin .pricing_list li{
@@ -1517,7 +1517,7 @@ ul.top-right li a:hover.instagram{
 	font-weight: bold;
 	margin-top: auto;
 	padding: 1em 2em;
-	color: #fff;	
+	color: #fff;
 	-webkit-transition: background-color 0.3s ease-in-out;
 	transition: background-color 0.3s ease-in-out;
 	border:1px solid transparent;
@@ -1530,7 +1530,7 @@ ul.top-right li a:hover.instagram{
 .pricing_item.active:hover .pricing_action{
 	border:1px solid transparent;
 	background:#07AAA5 !important;
-}	
+}
 /* ---------- Pricing Tables ---------- */
 
 
@@ -1555,10 +1555,10 @@ ul.top-right li a:hover.instagram{
   margin-right: 13%;
 }
 
-#testinomial-slider .item h5{ 
-	font-size:14px; 
-	text-transform:uppercase; 
-	margin-top:40px; 
+#testinomial-slider .item h5{
+	font-size:14px;
+	text-transform:uppercase;
+	margin-top:40px;
 	margin-bottom:15px;
 }
 
@@ -1614,7 +1614,7 @@ ul.top-right li a:hover.instagram{
 }
 #publication-slider .item:hover{
 	cursor:pointer;
-}	
+}
 #publication-slider .item .image{
 	overflow: hidden;
   position: relative;
@@ -1751,7 +1751,7 @@ ul.top-right li a:hover.instagram{
 }
 
 #contact .form-inline .form-control{
-	height:45px;
+	height: 55px;
 }
 
 #contact .form-inline .form-control,
@@ -1766,8 +1766,8 @@ ul.top-right li a:hover.instagram{
 #contact .form-inline .btn-black{
 	width:100%;
 	color:#fff;
-	
-}	
+
+}
 #contact .form-inline input[type="submit"]{
 	width:100%;
 	height:100%;
@@ -1896,28 +1896,28 @@ footer .breadcrumb li a:hover, footer .breadcrumb li a:focus{
 
 
 
-/* ========================= Alert Classes ==================== */ 
+/* ========================= Alert Classes ==================== */
 
 .alert-success {
 	line-height:24px;
 	margin-bottom:15px;
 	padding:5px;
-	
+
 	}
-	
+
 .alert-danger {
 	line-height:24px;
 	margin-bottom:15px;
 	padding:5px;
-	
-}	
+
+}
 
 
 
 
 
 
- 
+
 
 
 
@@ -2022,7 +2022,7 @@ footer .breadcrumb li a:hover, footer .breadcrumb li a:focus{
 }
 
 .morepost-wrap .morepost ,
-.morepost-wrap2 .morepost{ 
+.morepost-wrap2 .morepost{
   font-size:16px;
   color:#696969;
   margin-top:25px;
@@ -2045,7 +2045,7 @@ footer .breadcrumb li a:hover, footer .breadcrumb li a:focus{
 
 .morepost-wrap2 .morepost .fa-long-arrow-left,
 .morepost-wrap2 .morepost .fa-long-arrow-right,
-.morepost-wrap .morepost .fa-long-arrow-left , 
+.morepost-wrap .morepost .fa-long-arrow-left ,
 .morepost-wrap .morepost .fa-long-arrow-right{
 	color: transparent;
 	pointer-events: none;
@@ -2171,13 +2171,13 @@ footer .breadcrumb li a:hover, footer .breadcrumb li a:focus{
   border-radius:0;
 }
 
-.blog-item .post-comment form textarea, 
+.blog-item .post-comment form textarea,
 .contact form textarea{
 	margin:30px 0;
 	min-height:210px;
 }
 
-.blog-item .post-comment form input[type="submit"] , 
+.blog-item .post-comment form input[type="submit"] ,
 .contact form input[type="submit"]{
 	background:#82b440;
 	border:1px solid transparent;
@@ -2187,11 +2187,11 @@ footer .breadcrumb li a:hover, footer .breadcrumb li a:focus{
 	width:185px;
 	position:relative;
 }
-.blog-item .post-comment form input[type="submit"]:hover , 
+.blog-item .post-comment form input[type="submit"]:hover ,
 .contact form input[type="submit"]:hover{
 	background:#1b1d1f;
 }
- 
+
 .widget{
 	margin-bottom:40px;
 	color:#1b1d1f;
@@ -2263,7 +2263,7 @@ ul.category li a .date{
 	max-height:440px;
 	border-bottom: 5px solid rgba(0,0,0,0.9);
 	color: #fff;
-	
+
 }
 .tagline {
 	color: #fff;
@@ -2284,7 +2284,7 @@ ul.category li a .date{
 	.blog-wrap .blog-content {
 	  padding: 3.5em 0;
 	}
-	
+
 	 .layer-content-responsive {
 		max-height:400px !important;
 		overflow:hidden;
@@ -2293,15 +2293,15 @@ ul.category li a .date{
 
 
 @media screen and (max-width: 1024px){
-	
+
 	h2{ font-size:36px; }
 	h3{ font-size:20px; }
 	h4{ font-size:16px; }
-	
+
 }
 
 @media screen and (max-width: 1000px){
-	 
+
 .navbar-default .navbar-nav > li {
 	margin: 0 6px;
 }
@@ -2329,13 +2329,13 @@ flex: 0 1 320px;
 }
 #bg-paralax , #testinomial, .text-rotator{
   background-position:center center !important;
-}	
+}
 #slogan{
 text-align:center;
 }
 #slogan p{s
 font-size:16px;
-}	
+}
 #slogan a.pull-right {
 float: none !important;
 margin-top: 30px;
@@ -2343,7 +2343,7 @@ margin-top: 30px;
 }
 
 
-		
+
 }
 
 
@@ -2352,7 +2352,7 @@ margin-top: 30px;
 
   h2{ font-size:30px; }
   #main-navigation{ background-color: #1b1d1f; }
-  
+
   .navbar-brand, #navigation.affix .navbar-brand{ display:inline-block;  padding: 10px 0;}
   .navbar-default .navbar-nav > li > a, #navigation.affix  .navbar-default .navbar-nav > li > a {
 	  padding: 10px 0;
@@ -2397,7 +2397,7 @@ margin-top: 30px;
 	}
 	#thinkers{
 		padding-bottom:45px;
-	}	
+	}
 	.thinker-image .overlay {
 	  height: 60px;
 	}
@@ -2409,7 +2409,7 @@ margin-top: 30px;
 	}
 	.number-counters > .col-xs-12{
 		width:50%;
-	}	
+	}
 	.circliful {
 	  margin-bottom: 50px;
 	}
@@ -2432,41 +2432,41 @@ margin-top: 30px;
 	#publication-slider .owl-prev, #publication-slider .owl-next{
 		background:#fff;
 		top:19%;
-		
+
 	}
-	
-	
+
+
 	.circliful {
 	  margin-bottom: 50px;
 	  margin-left:0;
 	  float:none;
 	  display:inline-block
-	  
+
 	}
 	.circliful:first-child {
 	  margin-left: 0;
 	}
-	
-	
-	
-		
+
+
+
+
 }
 
 
-@media screen and (min-width: 641px) and (max-width: 767px) { 
+@media screen and (min-width: 641px) and (max-width: 767px) {
 
       #thinkers .col-sm-4{
 		  width: 48%;
 		  display:inline-block;
-	  } 
-	  
-	 
-	  
-	  
-	  
-	  
-	  
-   
+	  }
+
+
+
+
+
+
+
+
 }
 
 
@@ -2494,7 +2494,7 @@ margin-top: 30px;
 	.circliful:first-child {
 	  margin-left: 0;
 	}
-	
+
 	.layer-content-responsive {
 		max-height:240px !important;
 		overflow:hidden;
@@ -2504,11 +2504,11 @@ margin-top: 30px;
 
 
 @media screen and (max-width: 479px){
-	
+
 	#main-navigation{
 		top:0;
 	}
-	
+
 }
 
 

@@ -3,14 +3,15 @@
 import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
-import { MainController } from './main/main.controller';
+import { HomeController } from './home/home.controller';
 import { ThemeMainDirective } from '../app/components/theme-main/themeMain.directive';
 
-angular.module('wiperrPortal', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'toastr'])
+angular.module('wiperrPortal', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'mgo-angular-wizard', 'lbServices',
+  'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'toastr', 'ui.bootstrap.datetimepicker'])
   .constant('malarkey', malarkey)
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)
   .run(runBlock)
-  .controller('MainController', MainController)
+  .controller('HomeController', HomeController)
   .directive('themeMain', ThemeMainDirective);

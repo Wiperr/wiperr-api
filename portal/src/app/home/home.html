@@ -50,7 +50,7 @@
                     <a href="#publication" class="page-scroll">Blog</a>
                   </li>
                   <li>
-                    <a href="#contact" class="page-scroll">Contact Us</a>
+                    <a href="#contact" class="page-scroll">Book A Wash</a>
                   </li>
                 </ul>
               </div>
@@ -116,7 +116,7 @@
                  data-linktoslide="next"
                  style="z-index: 12;">
               <a href="#responsive" class="btn-common btn-green bounce-white page-scroll">Request a call</a>
-              <a href="#." class="btn-common btn-blue bounce-white">Book a car wash</a>
+              <a href="#services" class="btn-common btn-blue bounce-white">Book a car wash</a>
             </div>
           </li>
           <!-- SLIDE  -->
@@ -168,7 +168,7 @@
                  data-linktoslide="next"
                  style="z-index: 12;">
               <a href="#responsive" class="btn-common btn-blue bounce-white page-scroll">Request a call</a>
-              <a href="#." class="btn-common btn-green bounce-white">Book a car wash</a>
+              <a href="#services" class="btn-common btn-green bounce-white">Book a car wash</a>
             </div>
           </li>
         </ul>
@@ -643,17 +643,6 @@
     </div>
   </section>
 
-  <section id="slogan" class="wow fadeIn" data-wow-duration="500ms" data-wow-delay="300ms">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h5 class="hidden">hiddens</h5>
-          <p class="pull-left">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
-          <a class="pull-right bounce-top" href="#.">get in touch</a> </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact Us -->
   <section class="info-section" id="contact">
     <div class="row">
@@ -677,10 +666,10 @@
       </div>
       <div class="col-md-6 block light text-center wow fadeInRightBig" data-wow-duration="500ms" data-wow-delay="300ms">
         <div class="center">
-          <p class="title">With propositions</p>
-          <h2>Contact Us</h2>
+          <p class="title">Quickly</p>
+          <h2>Book a Car Wash</h2>
           <form class="form-inline" id="contact-form" onSubmit="return false">
-            <div class="row">
+            <!--<div class="row">
               <div class="col-md-12 center"><div id="result"></div> </div>
             </div>
 
@@ -695,7 +684,77 @@
                 <textarea placeholder="Message..." class="form-control" name="message" id="message"></textarea>
                 <button type="submit" class="btn-black btn-blue bounce-green" id="btn_submit"> Send Message </button>
               </div>
-            </div>
+            </div>-->
+            <wizard on-finish="FFFfinishedWizard()">
+              <wz-step wz-title="Your Details">
+                <div class="row">
+                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <fieldset disabled>
+                      <label for="locationSelect">Select Location</label>
+                      <select id="locationSelect" class="form-control">
+                        <!-- TODO dynamically fetch these locations -->
+                        <option>Gurgaon</option>
+                      </select>
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <fieldset>
+                      <label for="phoneNumber">Mobile Number</label>
+                      <input type="text" id="phoneNumber" class="form-control" placeholder="Enter 10 digit mobile number">
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <fieldset>
+                      <label for="email">Email</label>
+                      <input type="text" id="email" class="form-control" placeholder="Enter your email id">
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <fieldset>
+                      <label for="name">Name</label>
+                      <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="row">
+                  <fieldset>
+                    <div class="col-xs-12 col-md-12">
+                      <textarea placeholder="Address..." class="form-control" name="address" id="address"></textarea>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="row">
+                  <fieldset>
+                    <div class=".col-md-3 .col-md-offset-3">
+                      <input class="btn btn-default" type="button" value="Next" wz-next>
+                    </div>
+                  </fieldset>
+                </div>
+              </wz-step>
+              <wz-step wz-title="Time Slot">
+                <h1>Select a time slot <span ng-if="home.timeSlot !== ''">: {{home.timeSlot}}</span></h1>
+                <div class="row" ng-if="home.displayDate">
+                  <fieldset>
+                    <div class="col-xs-12 col-md-12 center-aligner">
+                      <datetimepicker ng-model="home.timeSlot" on-set-time="home.onSetTime(newDate, oldDate)"></datetimepicker>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="row">
+                  <fieldset>
+                    <div class="col-xs-12 col-md-12">
+                      <input class="btn btn-default" type="button" value="Next" wz-next>
+                    </div>
+                  </fieldset>
+                </div>
+              </wz-step>
+              <wz-step wz-title="More steps">
+                <p>Even more steps!!</p>
+                <input type="submit" wz-next value="Finish now" />
+              </wz-step>
+            </wizard>
           </form>
         </div>
       </div>
@@ -715,7 +774,7 @@
             <li><a href="#thinkers" class="page-scroll">Team</a></li>
             <li><a href="#contact" class="page-scroll">Contact Us</a></li>
           </ul>
-          <p>Copyright &copy; 2016 BizOne. all rights reserved.</p>
+          <p>Copyright &copy; 2016-17 Wiperr. All Rights Reserved.</p>
         </div>
       </div>
     </div>
