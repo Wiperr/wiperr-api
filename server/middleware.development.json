@@ -1,4 +1,84 @@
 {
+  "files": {
+    "loopback#static": [
+      {
+        "paths": [
+          "/local"
+        ],
+        "params": [
+          "$!../portal/.tmp/serve"
+        ]
+      },
+      {
+        "paths": [
+          "/portal"
+        ],
+        "params": [
+          "$!../portal/dist"
+        ]
+      },
+      {
+        "paths": [
+          "/local/css",
+          "/portal/css"
+        ],
+        "params": [
+          "$!../resources/css"
+        ]
+      },
+      {
+        "paths": [
+          "/local/images",
+          "/portal/images"
+        ],
+        "params": [
+          "$!../resources/images"
+        ]
+      },
+      {
+        "paths": [
+          "/local/fonts",
+          "/portal/fonts"
+        ],
+        "params": [
+          "$!../resources/fonts"
+        ]
+      },
+      {
+        "paths": [
+          "/bower_components"
+        ],
+        "params": [
+          "$!../portal/bower_components"
+        ]
+      },
+      {
+        "paths": [
+          "/local/app"
+        ],
+        "params": [
+          "$!../portal/src/app"
+        ]
+      },
+      {
+        "paths": [
+          "/local/js",
+          "/portal/js"
+        ],
+        "params": [
+          "$!../resources/js"
+        ]
+      },
+      {
+        "paths": [
+          "/sdk"
+        ],
+        "params": [
+          "$!../sdk"
+        ]
+      }
+    ]
+  },
   "final:after": {
     "strong-error-handler": {
       "params": {

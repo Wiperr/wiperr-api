@@ -41,9 +41,7 @@
     }
   },
   "files": {
-    "loopback#static": {
-      "params": "$!../portal"
-    }
+    "loopback#static": []
   },
   "final": {
     "loopback#urlNotFound": {}

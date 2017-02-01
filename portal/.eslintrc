@@ -1,0 +1,23 @@
+{
+  "extends": "eslint:recommended",
+  "plugins": ["angular"],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jasmine": true
+  },
+  "rules": {
+    "angular/angularelement": 0
+  },
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "globals": {
+    "angular": true,
+    "module": true,
+    "jQuery": true,
+    "WOW": true,
+    "$": true,
+    "inject": true
+  }
+}
