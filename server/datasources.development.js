@@ -8,6 +8,6 @@ module.exports = {
   "db": {
     "url": "mongodb://wiperr-dev:wiperr-dev@ds155097.mlab.com:55097/wiperr-dev",
     "name": "db",
-    "connector": "mongodb"
+    "connector": process.env.DB || "mongodb"
   }
 };

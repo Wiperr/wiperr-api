@@ -50,7 +50,7 @@
                     <a href="#publication" class="page-scroll">Blog</a>
                   </li>
                   <li>
-                    <a href="#contact" class="page-scroll">Book A Wash</a>
+                    <a href="#contact" class="page-scroll" ng-click="home.toggleBookingForm()">Book A Wash</a>
                   </li>
                 </ul>
               </div>
@@ -116,7 +116,8 @@
                  data-linktoslide="next"
                  style="z-index: 12;">
               <a href="#responsive" class="btn-common btn-green bounce-white page-scroll">Request a call</a>
-              <a href="#services" class="btn-common btn-blue bounce-white">Book a car wash</a>
+              <a href="#services" class="btn-common btn-blue bounce-white page-scroll"
+                 ng-click="home.toggleBookingForm()">Book a car wash</a>
             </div>
           </li>
           <!-- SLIDE  -->
@@ -168,7 +169,8 @@
                  data-linktoslide="next"
                  style="z-index: 12;">
               <a href="#responsive" class="btn-common btn-blue bounce-white page-scroll">Request a call</a>
-              <a href="#services" class="btn-common btn-green bounce-white">Book a car wash</a>
+              <a href="#services" class="btn-common btn-green bounce-white page-scroll"
+                 ng-click="home.toggleBookingForm()">Book a car wash</a>
             </div>
           </li>
         </ul>
@@ -238,7 +240,7 @@
                 <li class="pricing_feature">Window & Windshield Cleaning</li>
                 <li class="pricing_feature">Carnauba Spray on Paint</li>
               </ul>
-              <a class="pricing_action text-center" href="#.">Choose plan</a>
+              <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
             </div>
             <div class="pricing_item active">
               <h3 class="pricing_title">Wiperr Interior</h3>
@@ -249,7 +251,7 @@
                 <li class="pricing_feature">Dashboard/Door Panels/All Plastic Parts DryCleaning & Polishing</li>
                 <li class="pricing_feature">Roof/Seats/Upholstery DryCleaning</li>
               </ul>
-              <a class="pricing_action text-center" href="#.">Choose plan</a>
+              <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
             </div>
             <div class="pricing_item dark_gray">
               <h3 class="pricing_title">Wiperr Complete Spa</h3>
@@ -264,7 +266,7 @@
                 <li class="pricing_feature">Window & Windshield Cleaning</li>
                 <li class="pricing_feature">Carnauba Spray on Paint</li>
               </ul>
-              <a class="pricing_action text-center" href="#.">Choose plan</a>
+              <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
             </div>
             <div class="pricing_item dark_gray">
               <h3 class="pricing_title">Wiperr Waxx Me</h3>
@@ -279,7 +281,7 @@
                 <li class="pricing_feature">Window & Windshield Cleaning</li>
                 <li class="pricing_feature">Exterior Waxing using Rotor Machine</li>
               </ul>
-              <a class="pricing_action text-center" href="#.">Choose plan</a>
+              <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
             </div><div class="pricing_item dark_gray">
             <h3 class="pricing_title">A/C Sanitization</h3>
             <div class="pricing_price"><span class="pricing_currency">₹</span>900</div>
@@ -290,7 +292,7 @@
                 to remove bad odours and harmful germs
               </li>
             </ul>
-            <a class="pricing_action text-center" href="#.">Choose plan</a>
+            <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
           </div><div class="pricing_item dark_gray">
             <h3 class="pricing_title">Paint Protection</h3>
             <div class="pricing_price"><span class="pricing_currency">₹</span>3000</div>
@@ -302,7 +304,7 @@
               <li class="pricing_feature">Window & Windshield Cleaning</li>
               <li class="pricing_feature">Protection upto 5 months</li>
             </ul>
-            <a class="pricing_action text-center" href="#.">Choose plan</a>
+            <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
           </div>
           </div>
         </div>
@@ -666,25 +668,28 @@
       <div class="col-md-6 block light text-center wow fadeInRightBig" data-wow-duration="500ms" data-wow-delay="300ms">
         <div class="center">
           <p class="title">Quickly</p>
-          <h2>Book a Car Wash</h2>
+          <h2 ng-if="home.displayBookingForm">Book a Car Wash</h2>
+          <h2 ng-if="!home.displayBookingForm">Contact Us</h2>
           <form class="form-inline" id="contact-form" onSubmit="return false">
-            <!--<div class="row">
-              <div class="col-md-12 center"><div id="result"></div> </div>
-            </div>
+            <section ng-if="!home.displayBookingForm">
+              <div class="row">
+                <div class="col-md-12 center"><div id="result"></div> </div>
+              </div>
 
-            <div class="row">
-              <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                <input type="text" class="form-control"  placeholder="Your Name" name="name" id="name" required>
+              <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                  <input type="text" class="form-control"  placeholder="Your Name" name="name" id="name" required>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                  <input type="email" class="form-control"  placeholder="E-mail Address" name="email" id="email" required>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                  <textarea placeholder="Message..." class="form-control" name="message" id="message"></textarea>
+                  <button type="submit" class="btn-black btn-blue bounce-green" id="btn_submit"> Send Message </button>
+                </div>
               </div>
-              <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                <input type="email" class="form-control"  placeholder="E-mail Address" name="email" id="email" required>
-              </div>
-              <div class="col-xs-12 col-md-12">
-                <textarea placeholder="Message..." class="form-control" name="message" id="message"></textarea>
-                <button type="submit" class="btn-black btn-blue bounce-green" id="btn_submit"> Send Message </button>
-              </div>
-            </div>-->
-            <wizard on-finish="FFFfinishedWizard()">
+            </section>
+            <wizard on-finish="home.completeBooking()" ng-if="home.displayBookingForm">
               <wz-step wz-title="Your Details">
                 <div class="row">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
@@ -692,14 +697,16 @@
                       <label for="locationSelect">Select Location</label>
                       <select id="locationSelect" class="form-control">
                         <!-- TODO dynamically fetch these locations -->
-                        <option>Gurgaon</option>
+                        <option ng-repeat="location in home.details.locations.list"
+                                ng-selected="location === home.details.locations.selected">{{location}}</option>
                       </select>
                     </fieldset>
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <fieldset>
                       <label for="phoneNumber">Mobile Number</label>
-                      <input type="text" id="phoneNumber" class="form-control" placeholder="Enter 10 digit mobile number">
+                      <input type="text" id="phoneNumber" class="form-control"
+                             placeholder="Enter 10 digit mobile number" ng-model="home.details.phoneNumber">
                     </fieldset>
                   </div>
                 </div>
@@ -707,20 +714,23 @@
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <fieldset>
                       <label for="email">Email</label>
-                      <input type="text" id="email" class="form-control" placeholder="Enter your email id">
+                      <input type="text" id="email" class="form-control"
+                             placeholder="Enter your email id" ng-model="home.details.email">
                     </fieldset>
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <fieldset>
                       <label for="name">Name</label>
-                      <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                      <input type="text" id="name" class="form-control"
+                             placeholder="Enter your name" ng-model="home.details.name">
                     </fieldset>
                   </div>
                 </div>
                 <div class="row">
                   <fieldset>
                     <div class="col-xs-12 col-md-12">
-                      <textarea placeholder="Address..." class="form-control" name="address" id="address"></textarea>
+                      <textarea placeholder="Address..." class="form-control" name="address"
+                                id="address" ng-model="home.details.address"></textarea>
                     </div>
                   </fieldset>
                 </div>
@@ -737,7 +747,8 @@
                 <div class="row" ng-if="home.displayDate">
                   <fieldset>
                     <div class="col-xs-12 col-md-12 center-aligner">
-                      <datetimepicker ng-model="home.timeSlot" on-set-time="home.onSetTime(newDate, oldDate)"></datetimepicker>
+                      <datetimepicker ng-model="home.details.timeSlot"
+                                      on-set-time="home.onSetTime(newDate, oldDate)"></datetimepicker>
                     </div>
                   </fieldset>
                 </div>
@@ -750,8 +761,8 @@
                 </div>
               </wz-step>
               <wz-step wz-title="More steps">
-                <p>Even more steps!!</p>
-                <input type="submit" wz-next value="Finish now" />
+                <p>Select Service</p>
+                <input class="btn btn-default" type="button" wz-finish value="Book now" />
               </wz-step>
             </wizard>
           </form>

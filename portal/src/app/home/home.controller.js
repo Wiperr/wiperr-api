@@ -1,19 +1,37 @@
 export class HomeController {
-  constructor ($log, WizardHandler, $timeout) {
+  constructor ($log, WizardHandler, moment, $timeout) {
     'ngInject';
     let self = this;
 
-    self.timeSlot = "";
-    self.displayDate = true;
-    self.onSetTime = (newDate) => {
-      $log.debug(newDate);
+    self.details = {
+      timeSlot: "",
+      phoneNumber: "",
+      email: "",
+      name: "",
+      address: "",
+      "locations": {list: ["Gurgaon"], "selected": "Gurgaon"}
+    };
 
+    self.displayDate = true;
+    self.displayBookingForm = false;
+
+    self.onSetTime = (newDate) => {
+      self.details.timeSlot = newDate;
       $timeout(() => {
         self.displayDate = false;
         $timeout(() => self.displayDate = true, 100);
       }, 100);
 
       WizardHandler.wizard().next();
+    };
+
+    self.toggleBookingForm = () => {
+      self.displayBookingForm = !self.displayBookingForm;
+    };
+
+    self.completeBooking = () => {
+      $log.debug("booking completed");
+      self.toggleBookingForm();
     }
   }
 }
