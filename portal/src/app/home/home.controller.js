@@ -27,8 +27,20 @@ export class HomeController {
       WizardHandler.wizard().next();
     };
 
+    function clearDetails() {
+      self.details.address = "";
+      self.details.email = "";
+      self.details.firstName = "";
+      self.details.phoneNumber = "";
+      self.details.timeSlot = "";
+      self.details.selectedService = {};
+    }
+
     self.toggleBookingForm = () => {
       self.displayBookingForm = !self.displayBookingForm;
+      if (!self.displayBookingForm) {
+        clearDetails();
+      }
     };
 
     self.selectService = (serviceId) => {
@@ -40,6 +52,7 @@ export class HomeController {
     };
 
     self.completeBooking = () => {
+      self.toggleBookingForm();
       Booking.book({
         firstName: self.details.firstName,
         phoneNumber: self.details.phoneNumber,
@@ -49,8 +62,7 @@ export class HomeController {
         location: self.details.locations,
         address: self.details.address
       }).$promise.then((response) => {
-        $log.debug(response);
-        self.toggleBookingForm();
+
       });
     }
   }
