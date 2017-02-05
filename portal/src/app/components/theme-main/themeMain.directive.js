@@ -4,7 +4,7 @@ export function ThemeMainDirective() {
   let directive = {
     restrict: 'A',
     link: () => {
-      jQuery(function ($) {
+      jQuery(($) => {
 
         //Window Loaded Handler
         $(".loader").fadeOut("slow");
@@ -214,4 +214,23 @@ export function ThemeMainDirective() {
   };
 
   return directive;
+}
+
+export function PageScroll() {
+  'ngInject';
+
+  return {
+    "restrict": "A",
+    "link": (scope, elem) => {
+      $(elem[0]).on('click', function (event) {
+        //var $nav_height = $('#navigation.affix').outerHeight();
+        let $anchor = $(this);
+        $('html, body').stop().animate({
+          scrollTop: $($anchor.attr('href')).offset().top
+        }, 1200, 'easeInOutExpo');
+        event.preventDefault();
+        $('#navigation').affix({offset: {top: 50}});
+      });
+    }
+  }
 }

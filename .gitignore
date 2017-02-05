@@ -17,3 +17,16 @@
 coverage
 node_modules
 npm-debug.log
+.gitignore
+GruntFile.js
+bower.json
+bower_components/
+grunt/
+html/
+landing/
+libs/
+package.json
+readme.txt
+src/
+swig/
+update.txt

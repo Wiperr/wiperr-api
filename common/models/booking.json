@@ -6,16 +6,13 @@
     "validateUpsert": true
   },
   "properties": {
-    "date": {
-      "type": "string",
-      "required": true
-    },
-    "time": {
+    "timeSlot": {
       "type": "string",
       "required": true
     },
     "location": {
-      "type": "geopoint"
+      "type": "string",
+      "required": true
     },
     "address": {
       "type": "string"
@@ -27,6 +24,15 @@
       "type": "belongsTo",
       "model": "Customer",
       "foreignKey": ""
+    },
+    "payment": {
+      "type": "embedsOne",
+      "model": "Payment",
+      "property": "payment",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
     },
     "service": {
       "type": "belongsTo",

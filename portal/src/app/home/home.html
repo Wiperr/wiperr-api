@@ -50,7 +50,7 @@
                     <a href="#publication" class="page-scroll">Blog</a>
                   </li>
                   <li>
-                    <a href="#contact" class="page-scroll" ng-click="home.toggleBookingForm()">Book A Wash</a>
+                    <a href="#services" class="page-scroll" ng-click="home.toggleBookingForm()">Book A Wash</a>
                   </li>
                 </ul>
               </div>
@@ -227,85 +227,17 @@
         </div>
         <div class="col-md-12">
           <div class="pricing pricing_tenzin">
-            <div class="pricing_item dark_gray">
-              <h3 class="pricing_title">Flagship Cleaning</h3>
-              <div class="pricing_price"><span class="pricing_currency">₹</span>750</div>
-              <p class="pricing_sentence">Basic | Interior & Exterior</p>
+            <div class="pricing_item dark_gray" ng-repeat="service in home.services">
+              <h3 class="pricing_title">{{service.name}}</h3>
+              <div class="pricing_price"><span class="pricing_currency">₹</span>{{service.price}}</div>
+              <p class="pricing_sentence">{{service.category}}</p>
               <ul class="pricing_list">
-                <li class="pricing_feature">Interior & Boot Vacuuming</li>
-                <li class="pricing_feature">Dashboard/Door Panels/All Plastic Parts Polishing</li>
-                <li class="pricing_feature">Seats Dusting</li>
-                <li class="pricing_feature">Exterior Shampoo</li>
-                <li class="pricing_feature">Tyre Arches Cleaning & Tyre Polishing</li>
-                <li class="pricing_feature">Window & Windshield Cleaning</li>
-                <li class="pricing_feature">Carnauba Spray on Paint</li>
+                <!-- TODO refactor description to details -->
+                <li class="pricing_feature" ng-repeat="detail in service.description">{{detail}}</li>
               </ul>
-              <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
+              <a class="pricing_action text-center page-scroll" href="#contact" page-scroll=""
+                 ng-click="home.selectService(service.id)">Choose plan</a>
             </div>
-            <div class="pricing_item active">
-              <h3 class="pricing_title">Wiperr Interior</h3>
-              <div class="pricing_price"><span class="pricing_currency">₹</span>800</div>
-              <p class="pricing_sentence">Premium | Interiors</p>
-              <ul class="pricing_list">
-                <li class="pricing_feature">Interior & Boot Vacuuming</li>
-                <li class="pricing_feature">Dashboard/Door Panels/All Plastic Parts DryCleaning & Polishing</li>
-                <li class="pricing_feature">Roof/Seats/Upholstery DryCleaning</li>
-              </ul>
-              <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
-            </div>
-            <div class="pricing_item dark_gray">
-              <h3 class="pricing_title">Wiperr Complete Spa</h3>
-              <div class="pricing_price"><span class="pricing_currency">₹</span>1250</div>
-              <p class="pricing_sentence">Basic | Interior & Exterior</p>
-              <ul class="pricing_list">
-                <li class="pricing_feature">Interior & Boot Vacuuming</li>
-                <li class="pricing_feature">Dashboard/Door Panels/All Plastic Parts DryCleaning & Polishing</li>
-                <li class="pricing_feature">Roof/Seats/Upholstery DryCleaning</li>
-                <li class="pricing_feature">Exterior Shampoo</li>
-                <li class="pricing_feature">Tyre Arches Cleaning & Tyre Polishing</li>
-                <li class="pricing_feature">Window & Windshield Cleaning</li>
-                <li class="pricing_feature">Carnauba Spray on Paint</li>
-              </ul>
-              <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
-            </div>
-            <div class="pricing_item dark_gray">
-              <h3 class="pricing_title">Wiperr Waxx Me</h3>
-              <div class="pricing_price"><span class="pricing_currency">₹</span>1700</div>
-              <p class="pricing_sentence">Premium | Interior & Exterior</p>
-              <ul class="pricing_list">
-                <li class="pricing_feature">Interior & Boot Vacuuming</li>
-                <li class="pricing_feature">Dashboard/Door Panels/All Plastic Parts DryCleaning & Polishing</li>
-                <li class="pricing_feature">Roof/Seats/Upholstery DryCleaning</li>
-                <li class="pricing_feature">Exterior Shampoo</li>
-                <li class="pricing_feature">Tyre Arches Cleaning & Tyre Polishing</li>
-                <li class="pricing_feature">Window & Windshield Cleaning</li>
-                <li class="pricing_feature">Exterior Waxing using Rotor Machine</li>
-              </ul>
-              <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
-            </div><div class="pricing_item dark_gray">
-            <h3 class="pricing_title">A/C Sanitization</h3>
-            <div class="pricing_price"><span class="pricing_currency">₹</span>900</div>
-            <p class="pricing_sentence">Premium | A/C Vents</p>
-            <ul class="pricing_list">
-              <li class="pricing_feature">
-                A/C Vents sanitization using superior foam based sanitizer
-                to remove bad odours and harmful germs
-              </li>
-            </ul>
-            <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
-          </div><div class="pricing_item dark_gray">
-            <h3 class="pricing_title">Paint Protection</h3>
-            <div class="pricing_price"><span class="pricing_currency">₹</span>3000</div>
-            <p class="pricing_sentence">Premium | Exteriors with paint protection</p>
-            <ul class="pricing_list">
-              <li class="pricing_feature">Exterior Shampoo</li>
-              <li class="pricing_feature">3 Step Meguair's Coating applied using rotor machine</li>
-              <li class="pricing_feature">Tyre Arches Cleaning & Tyre Polishing</li>
-              <li class="pricing_feature">Window & Windshield Cleaning</li>
-              <li class="pricing_feature">Protection upto 5 months</li>
-            </ul>
-            <a class="pricing_action text-center page-scroll" href="#contact">Choose plan</a>
-          </div>
           </div>
         </div>
       </div>
@@ -678,14 +610,14 @@
 
               <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                  <input type="text" class="form-control"  placeholder="Your Name" name="name" id="name" required>
+                  <input type="text" class="form-control"  placeholder="Your Name" name="name" id="contactName" required>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                  <input type="email" class="form-control"  placeholder="E-mail Address" name="email" id="email" required>
+                  <input type="email" class="form-control"  placeholder="E-mail Address" name="email" id="contactEmail" required>
                 </div>
                 <div class="col-xs-12 col-md-12">
                   <textarea placeholder="Message..." class="form-control" name="message" id="message"></textarea>
-                  <button type="submit" class="btn-black btn-blue bounce-green" id="btn_submit"> Send Message </button>
+                  <button type="submit" class="btn-black btn-blue bounce-green" id="btn_submit">Send Message</button>
                 </div>
               </div>
             </section>
@@ -705,7 +637,7 @@
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <fieldset>
                       <label for="phoneNumber">Mobile Number</label>
-                      <input type="text" id="phoneNumber" class="form-control"
+                      <input type="number" id="phoneNumber" class="form-control"
                              placeholder="Enter 10 digit mobile number" ng-model="home.details.phoneNumber">
                     </fieldset>
                   </div>
@@ -720,9 +652,9 @@
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <fieldset>
-                      <label for="name">Name</label>
-                      <input type="text" id="name" class="form-control"
-                             placeholder="Enter your name" ng-model="home.details.name">
+                      <label for="firstName">Name</label>
+                      <input type="text" id="firstName" class="form-control"
+                             placeholder="Enter your name" ng-model="home.details.firstName">
                     </fieldset>
                   </div>
                 </div>
@@ -761,7 +693,7 @@
                 </div>
               </wz-step>
               <wz-step wz-title="More steps">
-                <p>Select Service</p>
+                <p>You've selected {{home.details.selectedService.name}}</p>
                 <input class="btn btn-default" type="button" wz-finish value="Book now" />
               </wz-step>
             </wizard>

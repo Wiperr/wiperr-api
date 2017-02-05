@@ -44,5 +44,13 @@
   "Customer": {
     "dataSource": "db",
     "public": true
+  },
+  "MailingList": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Payment": {
+    "dataSource": "db",
+    "public": true
   }
 }

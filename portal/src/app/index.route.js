@@ -5,7 +5,13 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       url: '/',
       templateUrl: 'app/home/home.html',
       controller: 'HomeController',
-      controllerAs: 'home'
+      controllerAs: 'home',
+      resolve: {
+        $services: (Service) => {
+          'ngInject';
+          return Service.find().$promise;
+        }
+      }
     });
 
   $urlRouterProvider.otherwise('/');

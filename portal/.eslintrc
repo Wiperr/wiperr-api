@@ -18,6 +18,7 @@
     "jQuery": true,
     "WOW": true,
     "$": true,
+    "_": true,
     "inject": true
   }
 }

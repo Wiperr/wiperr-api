@@ -71,6 +71,31 @@
       },
       {
         "paths": [
+          "/admin"
+        ],
+        "params": [
+          "$!../admin/release"
+        ]
+      },
+      {
+        "paths": [
+          "/admin/local"
+        ],
+        "params": [
+          "$!../admin/src"
+        ]
+      },
+      {
+        "paths": [
+          "/libs",
+          "/admin/libs"
+        ],
+        "params": [
+          "$!../admin/libs"
+        ]
+      },
+      {
+        "paths": [
           "/sdk"
         ],
         "params": [
