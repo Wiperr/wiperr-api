@@ -29,10 +29,12 @@ module.exports.sendEmail = (options, callback) => {
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodeMailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.zoho.com',
+      port: 465,
+      secure: true,
       auth: {
-        user: 'akshay.scythe@gmail.com',
-        pass: '12TwelvE19**^!&*'
+        user: 'info@wiperr.com',
+        pass: 'sanchaysyed'
       }
     });
 
@@ -45,7 +47,7 @@ module.exports.sendEmail = (options, callback) => {
           }
 
           let mailOptions = {
-            from: '"Akshay Singh" <akshay.scythe@gmail.com>',
+            from: '"Wiperr Info" <info@wiperr.com>',
             to: options.customerEmail,
             subject: '[Test] Wiperr Booking Confirmation',
             html: html
@@ -67,7 +69,7 @@ module.exports.sendEmail = (options, callback) => {
           }
 
           let mailOptions = {
-            from: '"Akshay Singh" <akshay.scythe@gmail.com>',
+            from: '"Wiperr Info" <info@wiperr.com>',
             to: options.mailList,
             subject: '[Test] Wiperr Booking Notification',
             html: html

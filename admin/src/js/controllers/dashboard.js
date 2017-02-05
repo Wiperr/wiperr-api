@@ -26,14 +26,17 @@ app
         count: 0
       };
 
-      Booking.count().$promise.then(function(response) {
-        $scope.bookings.count = response.count;
-      });
+      function updateBookingCount() {
+        Booking.count().$promise.then(function(response) {
+          $scope.bookings.count = response.count;
+        });
+      }
 
       function getBookings() {
         Booking.find({filter: {include: ["customer", "service"]}}).$promise.then(function(response) {
           $scope.bookings.list = response;
         }, $log.debug);
+        updateBookingCount();
       }
 
       function getMailers() {
