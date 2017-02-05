@@ -49,6 +49,7 @@ module.exports = function(Booking) {
               currency: "INR",
               type: "link",
               sms_notify: 0,
+              email_notify: 0,
               receipt: booking.id
             };
 
