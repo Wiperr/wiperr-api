@@ -38,9 +38,6 @@ export class HomeController {
 
     self.toggleBookingForm = () => {
       self.displayBookingForm = !self.displayBookingForm;
-      if (!self.displayBookingForm) {
-        clearDetails();
-      }
     };
 
     self.selectService = (serviceId) => {
@@ -61,8 +58,10 @@ export class HomeController {
         timeSlot: self.details.timeSlot,
         location: self.details.locations,
         address: self.details.address
-      }).$promise.then((response) => {
-
+      }).$promise.then(() => {
+        if (!self.displayBookingForm) {
+          clearDetails();
+        }
       });
     }
   }

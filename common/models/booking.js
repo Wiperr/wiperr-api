@@ -70,24 +70,31 @@ module.exports = function(Booking) {
         });
       }
 
+      function createCustomer(razorRes) {
+        customerCreatePromise = Customer.create({
+          email: info.email,
+          firstName: info.firstName,
+          password: uuid.v4(),
+          phoneNumber: info.phoneNumber,
+          externalId: razorRes.id
+        });
+
+        customerCreatePromise.then((response) => {
+          createBooking(response);
+        }).catch(console.log);
+      }
+
       if (_.isEmpty(customerQuery)) {
         razor.customers.create({
           name: info.firstName,
           email: info.email,
           contact: info.phoneNumber
         }).then(razorRes => {
-          customerCreatePromise = Customer.create({
-            email: info.email,
-            firstName: info.firstName,
-            password: uuid.v4(),
-            phoneNumber: info.phoneNumber,
-            externalId: razorRes.id
-          });
-
-          customerCreatePromise.then((response) => {
-            createBooking(response);
-          });
-        }, console.log);
+          createCustomer(razorRes);
+        }).catch(error => {
+          console.log(error.message);
+          createCustomer({});
+        });
       } else {
         createBooking(customerQuery[0]);
       }
