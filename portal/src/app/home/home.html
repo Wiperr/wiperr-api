@@ -222,8 +222,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <p class="title">Passionate about perfection</p>
-          <h2 class="heading">Pricing Tables</h2>
+          <p class="title" style="color: #07AAA5">Our love for all cars are same, Hence the prices</p>
+          <h2 class="heading" style="color: #07AAA5">Prices</h2>
         </div>
         <div class="col-md-12">
           <div class="pricing pricing_tenzin">
@@ -235,7 +235,7 @@
                 <!-- TODO refactor description to details -->
                 <li class="pricing_feature" ng-repeat="detail in service.description">{{detail}}</li>
               </ul>
-              <a class="pricing_action text-center page-scroll" href="#contact" page-scroll=""
+              <a class="pricing_action text-center page-scroll" href="#contact" page-scroll="" style="background: #07AAA5 !important"
                  ng-click="home.selectService(service.id)">Choose plan</a>
             </div>
           </div>
@@ -675,25 +675,42 @@
                 </div>
               </wz-step>
               <wz-step wz-title="Time Slot">
-                <h1>Select a time slot <span ng-if="home.timeSlot !== ''">: {{home.timeSlot}}</span></h1>
+                <h1 ng-if="home.toDisplayDate === ''">Select a time slot</h1>
+                <h3 ng-if="home.toDisplayDate !== ''">You've selected</h3>
+                <h4 ng-if="home.toDisplayDate !== ''"><span>{{home.toDisplayDate}}</span></h4>
+                <br />
                 <div class="row" ng-if="home.displayDate">
                   <fieldset>
                     <div class="col-xs-12 col-md-12 center-aligner">
-                      <datetimepicker ng-model="home.details.timeSlot"
-                                      on-set-time="home.onSetTime(newDate, oldDate)"></datetimepicker>
+                      <div class="input-group"
+                           moment-picker="home.details.date"
+                           format="YYYY-MM-DD">
+                        <input class="form-control"
+                               placeholder="Select a date"
+                               ng-model="home.details.date"
+                               ng-model-options="{ updateOn: 'blur' }">
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 center-aligner" ng-if="home.details.date !== ''">
+                      <div class="btn-group">
+                        <label class="btn btn-primary" ng-repeat="(key, time) in home.defaults.time"
+                               ng-model="home.details.time" ng-click="home.onSetTime(time)"
+                               uib-btn-radio="{{key}}">{{time}}</label>
+                      </div>
                     </div>
                   </fieldset>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                   <fieldset>
                     <div class="col-xs-12 col-md-12">
                       <input class="btn btn-default" type="button" value="Next" wz-next>
                     </div>
                   </fieldset>
-                </div>
+                </div>-->
               </wz-step>
               <wz-step wz-title="More steps">
-                <p>You've selected {{home.details.selectedService.name}}</p>
+                <p>You've selected <span style="color: #07AAA5"><b><i>{{home.details.selectedService.name}}</i></b></span></p>
+                <p>for <span style="color: #07AAA5"><b><i>{{home.details.toDisplayDate}}</i></b></span></p>
                 <input class="btn btn-default" type="button" wz-finish value="Book now" />
               </wz-step>
             </wizard>

@@ -1,9 +1,12 @@
 export class HomeController {
-  constructor ($log, WizardHandler, moment, $timeout, $services, Booking) {
+  constructor ($log, WizardHandler, moment, $scope, $services, Booking) {
     'ngInject';
     let self = this;
 
+    self.defaults = {time: {1: '10:30', 2: '14:00', 3: '16:30'}};
     self.details = {
+      date: "",
+      time: "1",
       timeSlot: "",
       phoneNumber: "",
       email: "",
@@ -16,14 +19,12 @@ export class HomeController {
     self.displayDate = true;
     self.displayBookingForm = false;
     self.services = $services;
+    self.toDisplayDate = "";
 
-    self.onSetTime = (newDate) => {
-      self.details.timeSlot = newDate;
-      $timeout(() => {
-        self.displayDate = false;
-        $timeout(() => self.displayDate = true, 100);
-      }, 100);
-
+    self.onSetTime = () => {
+      let time = moment(`${self.details.date} ${self.defaults.time[self.details.time]}`);
+      self.details.toDisplayDate = time.format("dddd, MMMM Do YYYY, h:mm:ss a");
+      self.details.timeSlot = time.toISOString();
       WizardHandler.wizard().next();
     };
 

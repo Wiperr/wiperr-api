@@ -17,7 +17,10 @@
     "angular": "~1.5.3",
     "angular-wizard": "^0.10.0",
     "lodash": "^4.17.4",
-    "ngToast": "ngtoast#^2.0.0"
+    "ngToast": "ngtoast#^2.0.0",
+    "angular-datepicker": "^2.0.3",
+    "angular-moment-picker": "moment-picker#^0.9.5",
+    "angular-bootstrap": "^2.5.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"
@@ -37,6 +40,7 @@
   },
   "resolutions": {
     "jquery": "2.1.4",
-    "angular": "~1.5.3"
+    "angular": "~1.5.3",
+    "moment": "^2.16.0"
   }
 }
