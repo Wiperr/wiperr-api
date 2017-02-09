@@ -57,6 +57,8 @@ export class HomeController {
     self.selectService = (serviceId) => {
       let service = _.find(self.services, {id: serviceId});
 
+      if (!self.displayBookingForm) {self.displayBookingForm = !self.displayBookingForm;}
+
       if (service) {
         self.details.selectedService = service;
       }
