@@ -1,5 +1,5 @@
 export class HomeController {
-  constructor ($log, WizardHandler, moment, $scope, $services, Booking, toastr) {
+  constructor ($log, WizardHandler, moment, $scope, $services, Booking, CallRequest, toastr) {
     'ngInject';
     let self = this;
 
@@ -13,6 +13,12 @@ export class HomeController {
           formatYear: 'yyyy'
         }
       }
+    };
+
+    self.callRequestDetails = {
+      "name": "",
+      "phoneNumber": "",
+      "followed": false
     };
 
     self.details = {
@@ -29,6 +35,7 @@ export class HomeController {
 
     self.displayDate = true;
     self.displayBookingForm = false;
+    self.displayRequestCall = false;
     self.isBooking = false;
     self.services = $services;
     self.toDisplayDate = "";
@@ -50,8 +57,14 @@ export class HomeController {
       self.details.selectedService = {};
     }
 
+    self.toggleCallRequestForm = () => {
+      self.displayRequestCall = !self.displayRequestCall;
+      if (self.displayBookingForm) {self.displayBookingForm = !self.displayBookingForm;}
+    };
+
     self.toggleBookingForm = () => {
       self.displayBookingForm = !self.displayBookingForm;
+      if (self.displayRequestCall) {self.displayRequestCall = !self.displayRequestCall;}
     };
 
     self.selectService = (serviceId) => {
@@ -62,6 +75,13 @@ export class HomeController {
       if (service) {
         self.details.selectedService = service;
       }
+    };
+
+    self.requestCall = () => {
+      self.toggleCallRequestForm();
+      CallRequest.create(self.callRequestDetails).$promise.then(() => {
+        toastr.success('Thank you', `Wiperr will connect with you shortly.`);
+      });
     };
 
     self.completeBooking = () => {

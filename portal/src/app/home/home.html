@@ -115,7 +115,7 @@
                  data-endelementdelay="0.1"
                  data-linktoslide="next"
                  style="z-index: 12;">
-              <a href="#responsive" class="btn-common btn-green bounce-white page-scroll">Request a call</a>
+              <a href="#contact" class="btn-common btn-green bounce-white page-scroll" ng-click="home.toggleCallRequestForm()">Request a call</a>
               <a href="#services" class="btn-common btn-blue bounce-white page-scroll"
                  ng-click="home.toggleBookingForm()">Book a car wash</a>
             </div>
@@ -168,7 +168,7 @@
                  data-endelementdelay="0.1"
                  data-linktoslide="next"
                  style="z-index: 12;">
-              <a href="#responsive" class="btn-common btn-blue bounce-white page-scroll">Request a call</a>
+              <a href="#contact" class="btn-common btn-blue bounce-white page-scroll" ng-click="home.toggleCallRequestForm()">Request a call</a>
               <a href="#services" class="btn-common btn-green bounce-white page-scroll"
                  ng-click="home.toggleBookingForm()">Book a car wash</a>
             </div>
@@ -601,7 +601,8 @@
         <div class="center">
           <p class="title" ng-if="!home.isBooking">Quickly</p>
           <h2 ng-if="home.displayBookingForm">Book a Car Wash</h2>
-          <h2 ng-if="!home.displayBookingForm && !home.isBooking">Contact Us</h2>
+          <h2 ng-if="!home.displayBookingForm && !home.isBooking && !home.displayRequestCall">Contact Us</h2>
+          <h2 ng-if="home.displayRequestCall && !home.displayBookingForm">Request a Call</h2>
           <form class="form-inline" id="contact-form" onSubmit="return false">
             <div class="row">
               <div class="col-md-12 center">
@@ -611,7 +612,7 @@
                 </div>
               </div>
             </div>
-            <section ng-if="!home.displayBookingForm && !home.isBooking">
+            <section ng-if="!home.displayBookingForm && !home.isBooking && !home.displayRequestCall">
               <div class="row">
                 <div class="col-md-12 center"><div id="result"></div> </div>
               </div>
@@ -629,7 +630,20 @@
                 </div>
               </div>
             </section>
-            <wizard on-finish="home.completeBooking()" ng-if="home.displayBookingForm">
+            <section ng-if="home.displayRequestCall">
+              <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                  <input type="text" class="form-control"  placeholder="Your Name" name="name" ng-model="home.callRequestDetails.name" required>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                  <input type="number" class="form-control"  placeholder="You Phone Number" name="phoneNumber" ng-model="home.callRequestDetails.phoneNumber" required>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                  <button class="btn-black btn-blue bounce-green" ng-click="home.requestCall()">Request</button>
+                </div>
+              </div>
+            </section>
+            <wizard on-finish="home.completeBooking()" ng-if="home.displayBookingForm && !home.displayRequestCall">
               <wz-step wz-title="Your Details">
                 <div class="row">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">

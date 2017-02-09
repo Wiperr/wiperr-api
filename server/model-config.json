@@ -52,5 +52,9 @@
   "Payment": {
     "dataSource": "db",
     "public": true
+  },
+  "CallRequest": {
+    "dataSource": "db",
+    "public": true
   }
 }

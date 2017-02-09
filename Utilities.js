@@ -38,56 +38,82 @@ module.exports.sendEmail = (options, callback) => {
       }
     });
 
-    async.parallel([
-      (next) => {
-        template("bookingConfirmation", locals, (error, html) => {
+    switch (options.type) {
+      case "bookingRequest":
+        async.parallel([
+          (next) => {
+            template("bookingConfirmation", locals, (error, html) => {
+              if (error) {
+                console.log(error);
+                return next(error);
+              }
+
+              let mailOptions = {
+                from: '"Wiperr Info" <info@wiperr.com>',
+                to: options.customerEmail,
+                subject: 'Wiperr Booking Confirmation',
+                html: html
+              };
+
+              transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  return next(error);
+                }
+
+                next(null, info);
+              });
+            });
+          },
+          (next) => {
+            template("bookingNotification", locals, (error, html) => {
+              if (error) {
+                return next(error);
+              }
+
+              let mailOptions = {
+                from: '"Wiperr Info" <info@wiperr.com>',
+                to: options.mailList,
+                subject: 'Wiperr Booking Notification',
+                html: html
+              };
+
+              transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  return next(error);
+                }
+
+                next(null, info);
+              });
+            });
+          }
+        ], (error, results) => {
+          if (error) return callback(error);
+          callback(null, results);
+        });
+        break;
+      case "requestCall":
+        template("requestCall", locals, (error, html) => {
           if (error) {
             console.log(error);
-            return next(error);
-          }
-
-          console.log(options.customerEmail);
-          let mailOptions = {
-            from: '"Wiperr Info" <info@wiperr.com>',
-            to: options.customerEmail,
-            subject: '[Test] Wiperr Booking Confirmation',
-            html: html
-          };
-
-          transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-              return next(error);
-            }
-
-            next(null, info);
-          });
-        });
-      },
-      (next) => {
-        template("bookingNotification", locals, (error, html) => {
-          if (error) {
-            return next(error);
+            return callback(error);
           }
 
           let mailOptions = {
             from: '"Wiperr Info" <info@wiperr.com>',
             to: options.mailList,
-            subject: '[Test] Wiperr Booking Notification',
+            subject: 'Wiperr Callback Request',
             html: html
           };
 
           transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-              return next(error);
+              console.log(error);
+              return callback(error);
             }
 
-            next(null, info);
+            callback(null, info);
           });
         });
-      }
-    ], (error, results) => {
-      if (error) return callback(error);
-      callback(null, results);
-    });
+    }
   });
 };

@@ -139,7 +139,8 @@ module.exports = function(Booking) {
           mailList: mailList,
           customerEmail: customerInfo.email,
           timeSlot: booking.timeSlot,
-          paymentLink: booking._payment.paymentLink
+          paymentLink: booking._payment.paymentLink,
+          type: "booking"
         }, (error, infos) => {
           if (error) {
             console.log(error);

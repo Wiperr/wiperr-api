@@ -6,8 +6,8 @@
  */
 
 app
-  .controller('DashboardController', ['$log', '$scope', 'Booking', 'Customer', '$timeout', 'MailingList',
-    function($log, $scope, Booking, Customer, $timeout, MailingList) {
+  .controller('DashboardController', ['$log', '$scope', 'Booking', 'Customer', '$timeout', 'MailingList', 'CallRequest',
+    function($log, $scope, Booking, Customer, $timeout, MailingList, CallRequest) {
       $scope.bookings = {
         count: 0,
         list: [],
@@ -20,6 +20,12 @@ app
         perPage: 10,
         show: true,
         email: ""
+      };
+
+      $scope.callRequests = {
+        list: [],
+        perPage: 10,
+        show: true
       };
 
       $scope.customers = {
@@ -45,8 +51,15 @@ app
         }, $log.debug);
       }
 
+      function getCallRequests() {
+        CallRequest.find().$promise.then(response => {
+          $scope.callRequests.list = response;
+        }, $log.debug);
+      }
+
       getBookings();
       getMailers();
+      getCallRequests();
 
       /*Customer.count().$promise.then(function(response) {
        $scope.customers.count = response.count;
@@ -62,6 +75,17 @@ app
         MailingList.deleteById({id: mailer.id}).$promise.then(function() {
           getMailers();
         }, $log.debug);
+      };
+
+      $scope.callRequests.removeRequest = function(request) {
+        CallRequest.deleteById({id: request.id}).$promise.then(function() {
+          getCallRequests();
+        }, $log.debug);
+      };
+
+      $scope.callRequests.updateRequest = function(request) {
+        request.followed = true;
+        CallRequest.prototype$updateAttributes(request.id, request).$promise.then(getCallRequests, $log.debug);
       };
 
       $scope.mailingList.addMailer = function() {

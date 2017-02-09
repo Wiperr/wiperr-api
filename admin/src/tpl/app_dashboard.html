@@ -312,6 +312,44 @@
         </table>
       </div>
       <!-- / tasks -->
+
+      <!-- tasks -->
+      <div class="panel panel-default" ng-if="callRequests.show">
+        <div class="panel-heading">Call Request Details</div>
+        <table st-table="callRequests.list" class="table table-striped">
+          <thead>
+          <tr>
+            <th st-sort="email">Name</th>
+            <th st-sort="category">Phone Number</th>
+            <th>Followed up</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="request in callRequests.list">
+            <td>{{request.name}}</td>
+            <td>{{request.phoneNumber}}</td>
+            <td>{{request.followed}}</td>
+            <td>
+              <button type="button" ng-click="callRequests.updateRequest(request, $index)" class="btn btn-xs btn-default" ng-if="!request.followed">
+                <i class="fa fa-check"></i>
+              </button>
+              <button type="button" ng-click="callRequests.removeRequest(request, $index)" class="btn btn-xs btn-default">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="5" class="text-center">
+              <div st-pagination="" st-items-by-page="mailingList.perPage" st-displayed-pages="7" class="no-margin"></div>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- / tasks -->
     </div>
   </div>
 
