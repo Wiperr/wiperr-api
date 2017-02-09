@@ -55,6 +55,8 @@ export class HomeController {
       self.details.phoneNumber = "";
       self.details.timeSlot = "";
       self.details.selectedService = {};
+      self.callRequestDetails.name = "";
+      self.callRequestDetails.phoneNumber = "";
     }
 
     self.toggleCallRequestForm = () => {
@@ -81,6 +83,7 @@ export class HomeController {
       self.toggleCallRequestForm();
       CallRequest.create(self.callRequestDetails).$promise.then(() => {
         toastr.success('Thank you', `Wiperr will connect with you shortly.`);
+        clearDetails();
       });
     };
 
