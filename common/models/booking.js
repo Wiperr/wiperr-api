@@ -24,6 +24,7 @@ module.exports = function(Booking) {
   Booking.book = (req, res, info, cb) => {
     let Customer = Booking.app.models.Customer;
     let Service = Booking.app.models.Service;
+    //TODO update if email address has changed in request for customer
     Customer.find({where: {or: [{phoneNumber: info.phoneNumber}, {email: info.email}]}}, (error, customerQuery) => {
       if (error) return cb(error);
 

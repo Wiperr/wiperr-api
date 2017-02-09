@@ -46,6 +46,7 @@ module.exports.sendEmail = (options, callback) => {
             return next(error);
           }
 
+          console.log(options.customerEmail);
           let mailOptions = {
             from: '"Wiperr Info" <info@wiperr.com>',
             to: options.customerEmail,

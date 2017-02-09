@@ -1,9 +1,20 @@
 export class HomeController {
-  constructor ($log, WizardHandler, moment, $scope, $services, Booking) {
+  constructor ($log, WizardHandler, moment, $scope, $services, Booking, toastr) {
     'ngInject';
     let self = this;
 
-    self.defaults = {time: {1: '10:30', 2: '14:00', 3: '16:30'}};
+    self.defaults = {
+      time: {1: '10:30', 2: '14:00', 3: '16:30'},
+      date: {
+        options: {
+          minDate: new Date(),
+          formatDay: 'dd',
+          formatMonth: 'MM',
+          formatYear: 'yyyy'
+        }
+      }
+    };
+
     self.details = {
       date: "",
       time: "1",
@@ -18,13 +29,15 @@ export class HomeController {
 
     self.displayDate = true;
     self.displayBookingForm = false;
+    self.isBooking = false;
     self.services = $services;
     self.toDisplayDate = "";
 
     self.onSetTime = () => {
-      let time = moment(`${self.details.date} ${self.defaults.time[self.details.time]}`);
-      self.details.toDisplayDate = time.format("dddd, MMMM Do YYYY, h:mm:ss a");
-      self.details.timeSlot = time.toISOString();
+      let formattedDate = self.details.date.toString().replace("00:00:00", `${self.defaults.time[self.details.time]}:00`);
+      let momentDate = moment(formattedDate);
+      self.details.toDisplayDate = momentDate.format("dddd, MMMM Do YYYY, h:mm:ss a");
+      self.details.timeSlot = momentDate.toISOString();
       WizardHandler.wizard().next();
     };
 
@@ -51,6 +64,7 @@ export class HomeController {
 
     self.completeBooking = () => {
       self.toggleBookingForm();
+      self.isBooking = true;
       Booking.book({
         firstName: self.details.firstName,
         phoneNumber: self.details.phoneNumber,
@@ -59,7 +73,9 @@ export class HomeController {
         timeSlot: self.details.timeSlot,
         location: self.details.locations,
         address: self.details.address
-      }).$promise.then(() => {
+      }).$promise.then((response) => {
+        self.isBooking = false;
+        toastr.success('Thank you', `Your booking for ${response.timeSlot} is confirmed`);
         if (!self.displayBookingForm) {
           clearDetails();
         }

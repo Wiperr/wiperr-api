@@ -599,11 +599,19 @@
       </div>
       <div class="col-md-6 block light text-center wow fadeInRightBig" data-wow-duration="500ms" data-wow-delay="300ms">
         <div class="center">
-          <p class="title">Quickly</p>
+          <p class="title" ng-if="!home.isBooking">Quickly</p>
           <h2 ng-if="home.displayBookingForm">Book a Car Wash</h2>
-          <h2 ng-if="!home.displayBookingForm">Contact Us</h2>
+          <h2 ng-if="!home.displayBookingForm && !home.isBooking">Contact Us</h2>
           <form class="form-inline" id="contact-form" onSubmit="return false">
-            <section ng-if="!home.displayBookingForm">
+            <div class="row">
+              <div class="col-md-12 center">
+                <div class="spinner" ng-if="home.isBooking">
+                  <div class="double-bounce1"></div>
+                  <div class="double-bounce2"></div>
+                </div>
+              </div>
+            </div>
+            <section ng-if="!home.displayBookingForm && !home.isBooking">
               <div class="row">
                 <div class="col-md-12 center"><div id="result"></div> </div>
               </div>
@@ -669,7 +677,7 @@
                 <div class="row">
                   <fieldset>
                     <div class=".col-md-3 .col-md-offset-3">
-                      <input class="btn btn-default" type="button" value="Next" wz-next>
+                      <input class="btn btn-default" type="button" value="Next" wz-next />
                     </div>
                   </fieldset>
                 </div>
@@ -682,14 +690,8 @@
                 <div class="row" ng-if="home.displayDate">
                   <fieldset>
                     <div class="col-xs-12 col-md-12 center-aligner">
-                      <div class="input-group"
-                           moment-picker="home.details.date"
-                           format="YYYY-MM-DD">
-                        <input class="form-control"
-                               placeholder="Select a date"
-                               ng-model="home.details.date"
-                               ng-model-options="{ updateOn: 'blur' }">
-                      </div>
+                      <div uib-datepicker ng-model="home.details.date" class="well well-sm"
+                           datepicker-options="home.defaults.date.options"></div>
                     </div>
                     <div class="col-xs-12 col-md-12 center-aligner" ng-if="home.details.date !== ''">
                       <div class="btn-group">

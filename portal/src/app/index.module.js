@@ -7,7 +7,7 @@ import { HomeController } from './home/home.controller';
 import { ThemeMainDirective, PageScroll } from '../app/components/theme-main/themeMain.directive';
 
 angular.module('wiperrPortal', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'mgo-angular-wizard', 'lbServices',
-  'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'datePicker', 'ui.bootstrap', 'moment-picker'])
+  'ngMessages', 'ngAria', 'ngResource', 'toastr', 'ui.router', 'datePicker', 'ui.bootstrap', 'moment-picker'])
   .constant('malarkey', malarkey)
   .constant('moment', moment)
   .config(config)
