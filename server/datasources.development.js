@@ -6,7 +6,9 @@
  */
 module.exports = {
   "db": {
-    "url": "mongodb://wiperr-dev:wiperr-dev@ds155097.mlab.com:55097/wiperr-dev",
+    "host": "localhost",
+    "port": 27017,
+    "database": "wiperr-development",
     "name": "db",
     "connector": process.env.DB || "mongodb"
   },
