@@ -59,7 +59,7 @@ module.exports = function(Booking) {
               url: "/invoices",
               json: razorPay
             }).then((razorResponse) => {
-              console.log("Razor Payment URL generated: ", razorResponse.toString());
+              console.log("Razor Payment URL generated");
               booking.payment.create({
                 method: "razor",
                 amount: service.price,
@@ -82,7 +82,7 @@ module.exports = function(Booking) {
         });
 
         customerCreatePromise.then((response) => {
-          console.log("New Customer Created", response.toString());
+          console.log("New Customer Created");
           createBooking(response);
         }).catch(console.log);
       }
@@ -134,7 +134,7 @@ module.exports = function(Booking) {
           customerEmail: customerInfo.email,
           timeSlot: booking.timeSlot,
           paymentLink: booking._payment.paymentLink,
-          type: "booking"
+          type: "bookingRequest"
         }, (error, infos) => {
           if (error) {
             console.log(error);
