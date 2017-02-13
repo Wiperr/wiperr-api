@@ -56,5 +56,9 @@
   "CallRequest": {
     "dataSource": "db",
     "public": true
+  },
+  "Credential": {
+    "dataSource": "db",
+    "public": true
   }
 }

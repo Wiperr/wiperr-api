@@ -585,7 +585,7 @@
           <h2 ng-if="home.displayBookingForm">Book a Car Wash</h2>
           <h2 ng-if="!home.displayBookingForm && !home.isBooking && !home.displayRequestCall">Contact Us</h2>
           <h2 ng-if="home.displayRequestCall && !home.displayBookingForm">Request a Call</h2>
-          <form class="form-inline" id="contact-form" onSubmit="return false">
+          <form class="form-inline" id="contact-form">
             <div class="row">
               <div class="col-md-12 center">
                 <div class="spinner" ng-if="home.isBooking">
@@ -601,14 +601,14 @@
 
               <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                  <input type="text" class="form-control"  placeholder="Your Name" name="name" id="contactName" required>
+                  <input type="text" class="form-control"  placeholder="Your Name" name="name" id="contactName">
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                  <input type="email" class="form-control"  placeholder="E-mail Address" name="email" id="contactEmail" required>
+                  <input type="email" class="form-control"  placeholder="E-mail Address" name="email" id="contactEmail">
                 </div>
                 <div class="col-xs-12 col-md-12">
                   <textarea placeholder="Message..." class="form-control" name="message" id="message"></textarea>
-                  <button type="submit" class="btn-black btn-blue bounce-green" id="btn_submit">Send Message</button>
+                  <button class="btn-black btn-blue bounce-green" id="btn_submit">Send Message</button>
                 </div>
               </div>
             </section>

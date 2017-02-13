@@ -4,26 +4,13 @@ let moment = require("moment");
 let _ = require("lodash");
 let uuid = require("node-uuid");
 let Utilities = require("../../Utilities");
-let RazorPay = require("razorpay");
 let request = require("request-promise");
-
-let razorRequester = request.defaults({
-  baseUrl: "https://api.razorpay.com/v1",
-  auth: {
-    user: "rzp_test_kk6Otoct4CqojT",
-    pass: "PrrIbqnuGzd8EmY7zxwWoNhc"
-  }
-});
-
-let razor = new RazorPay({
-  key_id: "rzp_test_kk6Otoct4CqojT",
-  key_secret: "PrrIbqnuGzd8EmY7zxwWoNhc"
-});
 
 module.exports = function(Booking) {
   Booking.book = (req, res, info, cb) => {
     let Customer = Booking.app.models.Customer;
     let Service = Booking.app.models.Service;
+    let Credential = Booking.app.models.Credential;
 
     //TODO update if email address has changed in request for customer
     Customer.find({where: {or: [{phoneNumber: info.phoneNumber}, {email: info.email}]}}, (error, customerQuery) => {
@@ -41,7 +28,7 @@ module.exports = function(Booking) {
         }, (error, booking) => {
           if (error) return cb(error);
 
-          console.log("New Booking Created", booking.toString());
+          console.log("New Booking Created", booking.id);
           Service.findById(info.serviceId).then(service => {
             let razorPay = {
               line_items: [{
@@ -55,18 +42,35 @@ module.exports = function(Booking) {
               receipt: booking.id
             };
 
-            razorRequester.post({
-              url: "/invoices",
-              json: razorPay
-            }).then((razorResponse) => {
-              console.log("Razor Payment URL generated");
-              booking.payment.create({
-                method: "razor",
-                amount: service.price,
-                paid: false,
-                paymentLink: razorResponse.short_url
-              }).then(() => {
-                cb(null, booking);
+            Credential.findById("razorPay").then(razorCred => {
+              if (_.isEmpty(razorCred)) {
+                console.log("No Service Credentials found for Razor Pay");
+                let err = new Error("Ops! Something is not right.");
+                err.statusCode = 404;
+                return cb(err);
+              }
+
+              let razorRequester = request.defaults({
+                baseUrl: "https://api.razorpay.com/v1",
+                auth: {
+                  user: razorCred.apiKey,
+                  pass: razorCred.secretKey
+                }
+              });
+
+              razorRequester.post({
+                url: "/invoices",
+                json: razorPay
+              }).then((razorResponse) => {
+                console.log("Razor Payment URL generated", razorResponse.short_url);
+                booking.payment.create({
+                  method: "razor",
+                  amount: service.price,
+                  paid: false,
+                  paymentLink: razorResponse.short_url
+                }).then(() => {
+                  cb(null, booking);
+                }).catch(cb);
               }).catch(cb);
             }).catch(cb);
           }).catch(cb);
@@ -82,7 +86,7 @@ module.exports = function(Booking) {
         });
 
         customerCreatePromise.then((response) => {
-          console.log("New Customer Created");
+          console.log("New Customer Created", response.email);
           createBooking(response);
         }).catch(console.log);
       }
