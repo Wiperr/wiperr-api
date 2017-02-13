@@ -42,7 +42,6 @@ module.exports = function(Booking) {
 
           Service.findById(info.serviceId).then(service => {
             let razorPay = {
-              customer_id: customer.externalId,
               line_items: [{
                 name: service.name,
                 amount: service.price * 100,
@@ -71,13 +70,12 @@ module.exports = function(Booking) {
         });
       }
 
-      function createCustomer(razorRes) {
+      function createCustomer() {
         customerCreatePromise = Customer.create({
           email: info.email,
           firstName: info.firstName,
           password: uuid.v4(),
-          phoneNumber: info.phoneNumber,
-          externalId: razorRes.id
+          phoneNumber: info.phoneNumber
         });
 
         customerCreatePromise.then((response) => {
@@ -86,16 +84,7 @@ module.exports = function(Booking) {
       }
 
       if (_.isEmpty(customerQuery)) {
-        razor.customers.create({
-          name: info.firstName,
-          email: info.email,
-          contact: info.phoneNumber
-        }).then(razorRes => {
-          createCustomer(razorRes);
-        }).catch(error => {
-          console.log(error.message);
-          createCustomer({});
-        });
+        createCustomer({});
       } else {
         createBooking(customerQuery[0]);
       }
