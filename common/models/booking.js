@@ -24,6 +24,7 @@ module.exports = function(Booking) {
   Booking.book = (req, res, info, cb) => {
     let Customer = Booking.app.models.Customer;
     let Service = Booking.app.models.Service;
+
     //TODO update if email address has changed in request for customer
     Customer.find({where: {or: [{phoneNumber: info.phoneNumber}, {email: info.email}]}}, (error, customerQuery) => {
       if (error) return cb(error);
@@ -40,6 +41,7 @@ module.exports = function(Booking) {
         }, (error, booking) => {
           if (error) return cb(error);
 
+          console.log("New Booking Created", booking.toString());
           Service.findById(info.serviceId).then(service => {
             let razorPay = {
               line_items: [{
@@ -57,6 +59,7 @@ module.exports = function(Booking) {
               url: "/invoices",
               json: razorPay
             }).then((razorResponse) => {
+              console.log("Razor Payment URL generated: ", razorResponse.toString());
               booking.payment.create({
                 method: "razor",
                 amount: service.price,
@@ -64,9 +67,9 @@ module.exports = function(Booking) {
                 paymentLink: razorResponse.short_url
               }).then(() => {
                 cb(null, booking);
-              }).catch(error => cb(error));
-            }).catch(error => cb(error));
-          });
+              }).catch(cb);
+            }).catch(cb);
+          }).catch(cb);
         });
       }
 
@@ -79,6 +82,7 @@ module.exports = function(Booking) {
         });
 
         customerCreatePromise.then((response) => {
+          console.log("New Customer Created", response.toString());
           createBooking(response);
         }).catch(console.log);
       }
@@ -108,7 +112,8 @@ module.exports = function(Booking) {
       MailingList.find({where: {category: "booking-notification"}}, (error, mailers) => {
         if (error) {
           console.log(error);
-          return next();
+          //TODO save mail not-sent field
+          return -1;
         }
 
         let mailList = "";
@@ -133,15 +138,19 @@ module.exports = function(Booking) {
         }, (error, infos) => {
           if (error) {
             console.log(error);
-            return next();
+            //TODO save mail not-sent field
+            return -1;
           }
 
           _.each(infos, (info) => {
             console.log('Message %s sent: %s', info.messageId, info.response);
           });
-          next();
+
+          //TODO save mail sent field
         });
       });
+
+      next();
     });
   });
 

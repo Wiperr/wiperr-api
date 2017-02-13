@@ -1,6 +1,6 @@
 {
   "name": "wiperr-api",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "main": "server/server.js",
   "scripts": {
     "lint": "eslint .",
