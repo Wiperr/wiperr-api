@@ -1,5 +1,5 @@
 export class HomeController {
-  constructor ($log, WizardHandler, moment, $scope, $services, Booking, CallRequest, toastr) {
+  constructor ($log, WizardHandler, moment, $document, $uibModal, $services, Booking, CallRequest, toastr) {
     'ngInject';
     let self = this;
 
@@ -13,6 +13,12 @@ export class HomeController {
           formatYear: 'yyyy'
         }
       }
+    };
+
+    self.modelTemplates = {
+      "privacyPolicy": "privacy_policy.html",
+      "termsConditions": "terms_conditions.html",
+      "cancellationPolicy": "cancellation_policy.html"
     };
 
     self.callRequestDetails = {
@@ -82,8 +88,22 @@ export class HomeController {
     self.requestCall = () => {
       self.toggleCallRequestForm();
       CallRequest.create(self.callRequestDetails).$promise.then(() => {
-        toastr.success('Thank you', `Wiperr will connect with you shortly.`);
+        toastr.success('Thank you', `We will contact you shortly!`);
         clearDetails();
+      });
+    };
+
+    self.openBox = (type, size, parentSelector) => {
+      let parentElem = parentSelector ?
+        angular.element($document[0].querySelector('.home-page ' + parentSelector)) : undefined;
+
+      $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: self.modelTemplates[type],
+        size: size,
+        appendTo: parentElem
       });
     };
 
