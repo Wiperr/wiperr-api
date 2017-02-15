@@ -11,7 +11,7 @@
       },
       {
         "paths": [
-          "/portal"
+          "/home"
         ],
         "params": [
           "$!../portal/dist"
@@ -20,7 +20,7 @@
       {
         "paths": [
           "/local/css",
-          "/portal/css"
+          "/home/css"
         ],
         "params": [
           "$!../resources/css"
@@ -29,7 +29,7 @@
       {
         "paths": [
           "/local/images",
-          "/portal/images"
+          "/home/images"
         ],
         "params": [
           "$!../resources/images"
@@ -38,7 +38,7 @@
       {
         "paths": [
           "/local/fonts",
-          "/portal/fonts"
+          "/home/fonts"
         ],
         "params": [
           "$!../resources/fonts"
@@ -63,7 +63,7 @@
       {
         "paths": [
           "/local/js",
-          "/portal/js"
+          "/home/js"
         ],
         "params": [
           "$!../resources/js"
