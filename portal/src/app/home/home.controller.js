@@ -50,7 +50,7 @@ export class HomeController {
       let formattedDate = self.details.date.toString().replace("00:00:00", `${self.defaults.time[self.details.time]}:00`);
       let momentDate = moment(formattedDate);
       self.details.toDisplayDate = momentDate.format("dddd, MMMM Do YYYY, h:mm:ss a");
-      self.details.timeSlot = momentDate.toISOString();
+      self.details.timeSlot = self.details.toDisplayDate;
       WizardHandler.wizard().next();
     };
 

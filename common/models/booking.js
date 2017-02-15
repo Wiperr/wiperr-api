@@ -20,7 +20,7 @@ module.exports = function(Booking) {
 
       function createBooking(customer) {
         Booking.create({
-          timeSlot: moment(info.timeSlot).format("dddd, MMMM Do YYYY, h:mm:ss a"),
+          timeSlot: info.timeSlot,
           location: info.location,
           address: info.address,
           customerId: customer.id,
