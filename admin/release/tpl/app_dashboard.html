@@ -240,7 +240,7 @@
             <td>{{booking.customer.phoneNumber}}</td>
             <td>{{booking.service.category}}</td>
             <td>{{booking.timeSlot}}</td>
-            <td>{{booking.service.price}}</td>
+            <td>{{booking._payment.amount}}</td>
             <td>
               <button type="button" ng-click="bookings.removeBooking(booking, $index)" class="btn btn-xs btn-default">
                 <i class="fa fa-trash"></i>
@@ -306,6 +306,63 @@
           <tr>
             <td colspan="5" class="text-center">
               <div st-pagination="" st-items-by-page="mailingList.perPage" st-displayed-pages="7" class="no-margin"></div>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- / tasks -->
+
+      <!-- tasks -->
+      <div class="panel panel-default" ng-if="coupons.show">
+        <div class="panel-heading">Coupon Details</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-2">
+              <button type="button" ng-click="coupons.addCoupon()" class="btn btn-sm btn-success">
+                <i class="glyphicon glyphicon-plus">
+                </i> Add Coupon
+              </button>
+            </div>
+            <div class="col-md-4">
+              <input class="input-sm form-control" name="couponCode" id="couponCode" type="text" ng-model="coupons.code" />
+            </div>
+            <div class="col-md-4">
+              <input class="input-sm form-control" name="couponDiscount" id="couponDiscount" type="text" ng-model="coupons.discount" />
+            </div>
+          </div>
+        </div>
+        <table st-table="coupons.list" class="table table-striped">
+          <thead>
+          <tr>
+            <th st-sort="code">Code</th>
+            <th st-sort="discount">Discount</th>
+            <th>Actions</th>
+          </tr>
+          <!--<tr>
+            <th>
+              <input st-search="'customer.firstName'" placeholder="Search for Customer Name" class="input-sm form-control" type="search"/>
+            </th>
+            <th colspan="4">
+              <input st-search placeholder="Global Search" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>-->
+          </thead>
+          <tbody>
+          <tr ng-repeat="coupon in coupons.list">
+            <td>{{coupon.code}}</td>
+            <td>{{coupon.discount}} %</td>
+            <td>
+              <button type="button" ng-click="coupon.removeCoupon(coupon, $index)" class="btn btn-xs btn-default">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="5" class="text-center">
+              <div st-pagination="" st-items-by-page="coupons.perPage" st-displayed-pages="7" class="no-margin"></div>
             </td>
           </tr>
           </tfoot>

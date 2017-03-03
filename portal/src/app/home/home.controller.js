@@ -1,5 +1,5 @@
 export class HomeController {
-  constructor ($log, WizardHandler, moment, $document, $uibModal, $services, Booking, CallRequest, toastr) {
+  constructor ($log, WizardHandler, moment, $document, $uibModal, $services, Booking, CallRequest, toastr, Coupon, $timeout) {
     'ngInject';
     let self = this;
 
@@ -35,14 +35,19 @@ export class HomeController {
       email: "",
       firstName: "",
       address: "",
+      couponCode: "",
+      afterDiscount: 0,
       "locations": {list: ["Gurgaon"], "selected": "Gurgaon"},
-      selectedService: {}
+      selectedService: {},
+      selectedCoupon: {}
     };
 
     self.displayDate = true;
     self.displayBookingForm = false;
     self.displayRequestCall = false;
     self.isBooking = false;
+    self.couponDetailsFetchStatus = "not-fetched";
+    self.couponDetailsFetchStatusText = "";
     self.services = $services;
     self.toDisplayDate = "";
 
@@ -82,7 +87,36 @@ export class HomeController {
 
       if (service) {
         self.details.selectedService = service;
+        self.details.afterDiscount = self.details.selectedService.price;
       }
+    };
+
+    self.applyCouponCode = () => {
+      self.couponDetailsFetchStatus = "fetching";
+      self.couponDetailsFetchStatusText = "";
+      Coupon.find({filter: {where: {code: self.details.couponCode}}}).$promise.then(response => {
+        $log.debug(response);
+
+        if (_.isEmpty(response)) {
+          self.couponDetailsFetchStatus = "fetch-error";
+          self.couponDetailsFetchStatusText = "Invalid Coupon Code";
+          return $timeout(() => {
+            self.couponDetailsFetchStatus = "not-fetched";
+          }, 2000);
+        }
+
+        self.couponDetailsFetchStatus = "fetched";
+        self.details.selectedCoupon = response[0];
+
+        self.details.afterDiscount = parseInt(self.details.selectedService.price) - ((parseInt(self.details.selectedService.price, 10) * self.details.selectedCoupon.discount) / 100);
+      }, error => {
+        $log.debug(error);
+        self.couponDetailsFetchStatus = "fetch-error";
+        self.couponDetailsFetchStatusText = "Invalid Coupon Code";
+        $timeout(() => {
+          self.couponDetailsFetchStatus = "not-fetched";
+        }, 2000);
+      });
     };
 
     self.requestCall = () => {
@@ -115,6 +149,7 @@ export class HomeController {
         phoneNumber: self.details.phoneNumber,
         email: self.details.email,
         serviceId: self.details.selectedService.id,
+        couponId: self.details.selectedCoupon.id,
         timeSlot: self.details.timeSlot,
         location: self.details.locations,
         address: self.details.address

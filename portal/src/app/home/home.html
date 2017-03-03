@@ -708,9 +708,89 @@
                 </div>-->
               </wz-step>
               <wz-step wz-title="Review Appointment">
-                <p>You've selected <span style="color: #07AAA5"><b><i>{{home.details.selectedService.name}}</i></b></span></p>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="text-center"><strong>Order summary</strong></h3>
+                      </div>
+                      <div class="panel-body">
+                        <div class="table-responsive">
+                          <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                              <td><strong>Service Type</strong></td>
+                              <td class="text-center"><strong>Customer Name</strong></td>
+                              <td class="text-center"><strong>Price</strong></td>
+                              <td class="text-right"><strong>Total</strong></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td>{{home.details.selectedService.name}}</td>
+                              <td class="text-center">{{home.details.firstName}}</td>
+                              <td class="text-center"><span class="pricing_currency">&#8377</span>{{home.details.selectedService.price}}</td>
+                              <td class="text-right"><span class="pricing_currency">&#8377</span>{{home.details.selectedService.price}}</td>
+                            </tr>
+                            <tr>
+                              <td class="highrow"></td>
+                              <td class="highrow"></td>
+                              <td class="highrow text-center"><strong>Subtotal</strong></td>
+                              <td class="highrow text-right"><span class="pricing_currency">&#8377</span>{{home.details.selectedService.price}}</td>
+                            </tr>
+                            <tr>
+                              <td class="emptyrow"></td>
+                              <td class="emptyrow"></td>
+                              <td class="emptyrow text-center" ng-if="home.couponDetailsFetchStatus === 'fetched'"><strong>Coupon Applied</strong></td>
+                              <td class="emptyrow text-right">
+                                <!--<div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                  <fieldset>
+
+                                  </fieldset>
+                                </div>-->
+                                <div class="spinner" ng-if="home.couponDetailsFetchStatus === 'fetching'">
+                                  <div class="dot1"></div>
+                                  <div class="dot2"></div>
+                                </div>
+                                <section ng-if="home.couponDetailsFetchStatus === 'not-fetched'">
+                                  <input type="text" id="discountCode" class="form-control"
+                                         placeholder="Enter coupon code" ng-model="home.details.couponCode">
+                                  <input class="btn btn-default" type="button" value="Apply Code" ng-click="home.applyCouponCode()" />
+                                </section>
+                                <div ng-if="home.couponDetailsFetchStatus === 'fetch-error'" style="color: #f13636">
+                                  {{home.couponDetailsFetchStatusText}}
+                                </div>
+                                <div ng-if="home.couponDetailsFetchStatus === 'fetched'" style="color: #8BC34A">
+                                  {{home.details.selectedCoupon.discount}} %
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+                              <td class="emptyrow"></td>
+                              <td class="emptyrow text-center"><strong>After Discount</strong></td>
+                              <td class="emptyrow text-right" style="color: #8BC34A;">
+                                <span class="pricing_currency">&#8377</span>{{home.details.afterDiscount}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="emptyrow"></td>
+                              <td class="emptyrow"></td>
+                              <td class="emptyrow"></td>
+                              <td class="emptyrow text-right" style="color: #8BC34A;">
+                                <input class="btn btn-default" type="button" wz-finish value="Book now" ng-if="home.couponDetailsFetchStatus === 'fetched'"/>
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--<p>You've selected <span style="color: #07AAA5"><b><i>{{home.details.selectedService.name}}</i></b></span></p>
                 <p>for <span style="color: #07AAA5"><b><i>{{home.details.toDisplayDate}}</i></b></span></p>
-                <input class="btn btn-default" type="button" wz-finish value="Book now" />
+                <input class="btn btn-default" type="button" wz-finish value="Book now" />-->
               </wz-step>
             </wizard>
           </form>

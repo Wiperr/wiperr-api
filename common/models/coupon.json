@@ -1,22 +1,17 @@
 {
-  "name": "Credential",
+  "name": "Coupon",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "id": true,
-      "required": true
-    },
-    "apiKey": {
+    "code": {
       "type": "string",
       "required": true
     },
-    "secretKey": {
-      "type": "string",
+    "discount": {
+      "type": "number",
       "required": true
     }
   },

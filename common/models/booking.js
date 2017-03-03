@@ -11,6 +11,7 @@ module.exports = function(Booking) {
     let Customer = Booking.app.models.Customer;
     let Service = Booking.app.models.Service;
     let Credential = Booking.app.models.Credential;
+    let Coupon = Booking.app.models.Coupon;
 
     //TODO update if email address has changed in request for customer
     Customer.find({where: {or: [{phoneNumber: info.phoneNumber}, {email: info.email}]}}, (error, customerQuery) => {
@@ -24,52 +25,62 @@ module.exports = function(Booking) {
           location: info.location,
           address: info.address,
           customerId: customer.id,
-          serviceId: info.serviceId
+          serviceId: info.serviceId,
+          couponId: info.couponId
         }, (error, booking) => {
           if (error) return cb(error);
 
           console.log("New Booking Created", booking.id);
-          Service.findById(info.serviceId).then(service => {
-            let razorPay = {
-              line_items: [{
-                name: service.name,
-                amount: service.price * 100,
-              }],
-              currency: "INR",
-              type: "link",
-              sms_notify: 0,
-              email_notify: 0,
-              receipt: booking.id
-            };
 
-            Credential.findById("razorPay").then(razorCred => {
-              if (_.isEmpty(razorCred)) {
-                console.log("No Service Credentials found for Razor Pay");
-                let err = new Error("Ops! Something is not right.");
-                err.statusCode = 404;
-                return cb(err);
+          Service.findById(info.serviceId).then(service => {
+            let finalAmount = parseInt(service.price, 10);
+
+            Coupon.find({id: booking.couponId}).then(coupon => {
+              if (!_.isEmpty(coupon)) {
+                finalAmount = finalAmount - ((finalAmount * coupon[0].discount) / 100);
               }
 
-              let razorRequester = request.defaults({
-                baseUrl: "https://api.razorpay.com/v1",
-                auth: {
-                  user: razorCred.apiKey,
-                  pass: razorCred.secretKey
-                }
-              });
+              let razorPay = {
+                line_items: [{
+                  name: service.name,
+                  amount: finalAmount * 100,
+                }],
+                currency: "INR",
+                type: "link",
+                sms_notify: 0,
+                email_notify: 0,
+                receipt: booking.id
+              };
 
-              razorRequester.post({
-                url: "/invoices",
-                json: razorPay
-              }).then((razorResponse) => {
-                console.log("Razor Payment URL generated", razorResponse.short_url);
-                booking.payment.create({
-                  method: "razor",
-                  amount: service.price,
-                  paid: false,
-                  paymentLink: razorResponse.short_url
-                }).then(() => {
-                  cb(null, booking);
+              Credential.findById("razorPay").then(razorCred => {
+                if (_.isEmpty(razorCred)) {
+                  console.log("No Service Credentials found for Razor Pay");
+                  let err = new Error("Ops! Something is not right.");
+                  err.statusCode = 404;
+                  return cb(err);
+                }
+
+                let razorRequester = request.defaults({
+                  baseUrl: "https://api.razorpay.com/v1",
+                  auth: {
+                    user: razorCred.apiKey,
+                    pass: razorCred.secretKey
+                  }
+                });
+
+                razorRequester.post({
+                  url: "/invoices",
+                  json: razorPay
+                }).then((razorResponse) => {
+                  console.log("Razor Payment URL generated", razorResponse.short_url);
+                  booking.payment.create({
+                    method: "razor",
+                    amount: finalAmount,
+                    paid: false,
+                    paymentLink: razorResponse.short_url
+                  }).then(() => {
+                    cb(null, booking);
+                  }).catch(cb);
                 }).catch(cb);
               }).catch(cb);
             }).catch(cb);
@@ -127,13 +138,14 @@ module.exports = function(Booking) {
 
         let customerInfo = booking.customer();
         let serviceInfo = booking.service();
+        let paymentInfo = booking._payment;
 
         Utilities.sendEmail({
           address: booking.address,
           firstName: customerInfo.firstName,
           phoneNumber: customerInfo.phoneNumber,
           serviceTitle: serviceInfo.name,
-          serviceCost: serviceInfo.price,
+          serviceCost: paymentInfo.amount,
           mailList: mailList,
           customerEmail: customerInfo.email,
           timeSlot: booking.timeSlot,

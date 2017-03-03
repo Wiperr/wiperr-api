@@ -6,8 +6,8 @@
  */
 
 app
-  .controller('DashboardController', ['$log', '$scope', 'Booking', 'Customer', '$timeout', 'MailingList', 'CallRequest',
-    function($log, $scope, Booking, Customer, $timeout, MailingList, CallRequest) {
+  .controller('DashboardController', ['$log', '$scope', 'Booking', 'Customer', '$timeout', 'MailingList', 'CallRequest', 'Coupon',
+    function($log, $scope, Booking, Customer, $timeout, MailingList, CallRequest, Coupon) {
       $scope.bookings = {
         count: 0,
         list: [],
@@ -26,6 +26,14 @@ app
         list: [],
         perPage: 10,
         show: true
+      };
+
+      $scope.coupons = {
+        list: [],
+        perPage: 10,
+        show: true,
+        code: "",
+        discount: 0
       };
 
       $scope.customers = {
@@ -57,9 +65,16 @@ app
         }, $log.debug);
       }
 
+      function getCoupons() {
+        Coupon.find().$promise.then(response => {
+          $scope.coupons.list = response;
+        }, $log.debug);
+      }
+
       getBookings();
       getMailers();
       getCallRequests();
+      getCoupons();
 
       /*Customer.count().$promise.then(function(response) {
        $scope.customers.count = response.count;
@@ -68,6 +83,12 @@ app
       $scope.bookings.removeBooking = function(booking) {
         Booking.deleteById({id: booking.id}).$promise.then(function() {
           getBookings();
+        }, $log.debug);
+      };
+
+      $scope.coupons.removeCoupon = function(coupon) {
+        Coupon.deleteById({id: coupon.id}).$promise.then(function() {
+          getCoupons();
         }, $log.debug);
       };
 
@@ -93,6 +114,15 @@ app
           .$promise.then(function() {
           $scope.mailingList.email = "";
           getMailers();
+        }, $log.debug);
+      };
+
+      $scope.coupons.addCoupon = function() {
+        Coupon.create({code: $scope.coupons.code, discount: $scope.coupons.discount})
+          .$promise.then(function() {
+          $scope.coupons.code = "";
+          $scope.coupons.discount = 0;
+          getCoupons();
         }, $log.debug);
       };
 

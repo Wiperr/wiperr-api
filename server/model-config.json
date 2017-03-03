@@ -60,5 +60,9 @@
   "Credential": {
     "dataSource": "db",
     "public": true
+  },
+  "Coupon": {
+    "dataSource": "db",
+    "public": true
   }
 }
