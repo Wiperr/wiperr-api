@@ -36,7 +36,7 @@ module.exports = function(Booking) {
             let finalAmount = parseInt(service.price, 10);
 
             Coupon.find({id: booking.couponId}).then(coupon => {
-              if (!_.isEmpty(coupon)) {
+              if (!_.isEmpty(coupon) && !_.isUndefined(booking.couponId)) {
                 finalAmount = finalAmount - ((finalAmount * coupon[0].discount) / 100);
               }
 
