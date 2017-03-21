@@ -229,7 +229,7 @@
           <div class="pricing pricing_tenzin">
             <div class="pricing_item dark_gray" ng-repeat="service in home.services">
               <h3 class="pricing_title">{{service.name}}</h3>
-              <div class="pricing_price"><span class="pricing_currency">&#8377</span>{{service.price}}</div>
+              <div class="pricing_price"><span class="pricing_currency">Rs </span>{{service.price}}</div>
               <p class="pricing_sentence">{{service.category}}</p>
               <ul class="pricing_list">
                 <!-- TODO refactor description to details -->
@@ -729,14 +729,14 @@
                             <tr>
                               <td>{{home.details.selectedService.name}}</td>
                               <td class="text-center">{{home.details.firstName}}</td>
-                              <td class="text-center"><span class="pricing_currency">&#8377</span>{{home.details.selectedService.price}}</td>
-                              <td class="text-right"><span class="pricing_currency">&#8377</span>{{home.details.selectedService.price}}</td>
+                              <td class="text-center"><span class="pricing_currency">Rs </span>{{home.details.selectedService.price}}</td>
+                              <td class="text-right"><span class="pricing_currency">Rs </span>{{home.details.selectedService.price}}</td>
                             </tr>
                             <tr>
                               <td class="highrow"></td>
                               <td class="highrow"></td>
                               <td class="highrow text-center"><strong>Subtotal</strong></td>
-                              <td class="highrow text-right"><span class="pricing_currency">&#8377</span>{{home.details.selectedService.price}}</td>
+                              <td class="highrow text-right"><span class="pricing_currency">Rs </span>{{home.details.selectedService.price}}</td>
                             </tr>
                             <tr>
                               <td class="emptyrow"></td>
@@ -770,7 +770,7 @@
                               <td class="emptyrow"></td>
                               <td class="emptyrow text-center"><strong>After Discount</strong></td>
                               <td class="emptyrow text-right" style="color: #8BC34A;">
-                                <span class="pricing_currency">&#8377</span>{{home.details.afterDiscount}}
+                                <span class="pricing_currency">Rs </span>{{home.details.afterDiscount}}
                               </td>
                             </tr>
                             <tr>

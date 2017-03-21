@@ -1,5 +1,6 @@
 export class HomeController {
-  constructor ($log, WizardHandler, moment, $document, $uibModal, $services, Booking, CallRequest, toastr, Coupon, $timeout) {
+  constructor ($log, WizardHandler, moment, $document, $uibModal, $services, Booking, CallRequest,
+               toastr, Coupon, $timeout, $window) {
     'ngInject';
     let self = this;
 
@@ -13,6 +14,23 @@ export class HomeController {
           formatYear: 'yyyy'
         }
       }
+    };
+
+    // Conversion labels
+    let google_conversion_label = {
+      'booking-confirmed': "sn1ECLbfi2kQ7eD0owM"
+    };
+
+    // Basic settings for AdWords Conversion
+    let googleTrackConversion = (conversion_label) => {
+      $window.google_trackConversion({
+        google_conversion_id: 880619629,
+        google_conversion_language: "en",
+        google_conversion_format: "3",
+        google_conversion_color: "ffffff",
+        google_conversion_label: google_conversion_label[conversion_label],
+        google_remarketing_only: false
+      });
     };
 
     self.modelTemplates = {
@@ -156,6 +174,7 @@ export class HomeController {
       }).$promise.then((response) => {
         self.isBooking = false;
         toastr.success('Thank you', `Your booking for ${response.timeSlot} is confirmed`);
+        googleTrackConversion('booking-confirmed');
         if (!self.displayBookingForm) {
           clearDetails();
         }
