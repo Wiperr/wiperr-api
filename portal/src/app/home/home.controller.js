@@ -55,7 +55,7 @@ export class HomeController {
       address: "",
       couponCode: "",
       afterDiscount: 0,
-      "locations": {list: ["Gurgaon"], "selected": "Gurgaon"},
+      "locations": {list: ["Gurgaon / South Delhi"], "selected": "Gurgaon / South Delhi"},
       selectedService: {},
       selectedCoupon: {}
     };
