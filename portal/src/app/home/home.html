@@ -218,7 +218,37 @@
     </div>
   </section>
 
-  <section class="section-padding padding" id="services">
+  <section class="section-padding padding" id="services" ng-if="home.defaults.selectedPlan === ''">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="title" style="color: #07AAA5">Select a plan</p>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <div class="center-aligner">
+              <div class="round-button" ng-click="home.selectPlan('centre')">
+                <div class="round-button-circle">
+                  <a>Centre</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="center-aligner">
+              <div class="round-button" ng-click="home.selectPlan('doorstep')">
+                <div class="round-button-circle">
+                  <a>Doorstep</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding padding" ng-if="home.defaults.selectedPlan !== ''">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
@@ -229,13 +259,17 @@
           <div class="pricing pricing_tenzin">
             <div class="pricing_item dark_gray" ng-repeat="service in home.services">
               <h3 class="pricing_title">{{service.name}}</h3>
-              <div class="pricing_price"><span class="pricing_currency">Rs </span>{{service.price}}</div>
+              <div class="pricing_price">
+                <span class="pricing_currency">Rs </span>
+                {{(home.defaults.selectedPlan === 'doorstep') ? service.price : service.priceCentre}}
+              </div>
               <p class="pricing_sentence">{{service.category}}</p>
               <ul class="pricing_list">
                 <!-- TODO refactor description to details -->
                 <li class="pricing_feature" ng-repeat="detail in service.description">{{detail}}</li>
               </ul>
-              <a class="pricing_action text-center page-scroll" href="#contact" page-scroll="" style="background: #07AAA5 !important"
+              <a class="pricing_action text-center page-scroll" href="#contact"
+                 page-scroll="" style="background: #07AAA5 !important"
                  ng-click="home.selectService(service.id)">Choose plan</a>
             </div>
           </div>

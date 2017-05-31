@@ -24,6 +24,7 @@ module.exports = function(Booking) {
           timeSlot: info.timeSlot,
           location: info.location,
           address: info.address,
+          category: info.category || "doorstep",
           customerId: customer.id,
           serviceId: info.serviceId,
           couponId: info.couponId
@@ -33,7 +34,9 @@ module.exports = function(Booking) {
           console.log("New Booking Created", booking.id);
 
           Service.findById(info.serviceId).then(service => {
-            let finalAmount = parseInt(service.price, 10);
+            //TODO refactor
+            let priceKey = (booking.category === "centre") ? "priceCentre" : "price";
+            let finalAmount = parseInt(service[priceKey], 10);
 
             Coupon.find({id: booking.couponId}).then(coupon => {
               if (!_.isEmpty(coupon) && !_.isUndefined(booking.couponId)) {
@@ -146,6 +149,7 @@ module.exports = function(Booking) {
           phoneNumber: customerInfo.phoneNumber,
           serviceTitle: serviceInfo.name,
           serviceCost: paymentInfo.amount,
+          category: booking.category,
           mailList: mailList,
           customerEmail: customerInfo.email,
           timeSlot: booking.timeSlot,

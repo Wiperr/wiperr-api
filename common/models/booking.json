@@ -16,6 +16,11 @@
     },
     "address": {
       "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "required": true,
+      "default": "doorstep"
     }
   },
   "validations": [],

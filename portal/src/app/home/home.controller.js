@@ -13,7 +13,8 @@ export class HomeController {
           formatMonth: 'MM',
           formatYear: 'yyyy'
         }
-      }
+      },
+      selectedPlan: ""
     };
 
     // Conversion labels
@@ -76,6 +77,10 @@ export class HomeController {
       self.details.timeSlot = self.details.toDisplayDate;
       WizardHandler.wizard().next();
     };
+    
+    self.selectPlan = (plan) => {
+      self.defaults.selectedPlan = plan;
+    };
 
     function clearDetails() {
       self.details.address = "";
@@ -86,6 +91,7 @@ export class HomeController {
       self.details.selectedService = {};
       self.callRequestDetails.name = "";
       self.callRequestDetails.phoneNumber = "";
+      self.defaults.selectedPlan = "";
     }
 
     self.toggleCallRequestForm = () => {
@@ -105,6 +111,8 @@ export class HomeController {
 
       if (service) {
         self.details.selectedService = service;
+        self.details.selectedService.price = (self.defaults.selectedPlan === 'doorstep') ?
+          service.price : service.priceCentre;
         self.details.afterDiscount = self.details.selectedService.price;
       }
     };
@@ -126,7 +134,8 @@ export class HomeController {
         self.couponDetailsFetchStatus = "fetched";
         self.details.selectedCoupon = response[0];
 
-        self.details.afterDiscount = parseInt(self.details.selectedService.price) - ((parseInt(self.details.selectedService.price, 10) * self.details.selectedCoupon.discount) / 100);
+        self.details.afterDiscount = parseInt(self.details.selectedService.price) -
+          ((parseInt(self.details.selectedService.price, 10) * self.details.selectedCoupon.discount) / 100);
       }, error => {
         $log.debug(error);
         self.couponDetailsFetchStatus = "fetch-error";
@@ -166,6 +175,7 @@ export class HomeController {
         firstName: self.details.firstName,
         phoneNumber: self.details.phoneNumber,
         email: self.details.email,
+        category: self.defaults.selectedPlan,
         serviceId: self.details.selectedService.id,
         couponId: self.details.selectedCoupon.id,
         timeSlot: self.details.timeSlot,

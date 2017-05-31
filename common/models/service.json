@@ -23,6 +23,10 @@
     "price": {
       "type": "number",
       "required": true
+    },
+    "priceCentre": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
