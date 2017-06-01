@@ -222,23 +222,31 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <p class="title" style="color: #07AAA5">Select a plan</p>
+          <p class="title" style="color: #07AAA5; font-size: 28px">Select a plan</p>
         </div>
         <div class="col-md-12">
-          <div class="col-md-6">
-            <div class="center-aligner">
-              <div class="round-button" ng-click="home.selectPlan('centre')">
-                <div class="round-button-circle">
-                  <a>Centre</a>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="center-aligner">
+                <div class="round-button" ng-click="home.selectPlan('centre')">
+                  <div class="round-button-circle">
+                    <a>
+                      <i class="fa fa-building"></i>
+                      Outlet
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="center-aligner">
-              <div class="round-button" ng-click="home.selectPlan('doorstep')">
-                <div class="round-button-circle">
-                  <a>Doorstep</a>
+            <div class="col-md-6">
+              <div class="center-aligner">
+                <div class="round-button" ng-click="home.selectPlan('doorstep')">
+                  <div class="round-button-circle">
+                    <a>
+                      <i class="fa fa-car"></i>
+                      Doorstep
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -273,6 +281,12 @@
                  ng-click="home.selectService(service.id)">Choose plan</a>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row" ng-if="home.defaults.selectedPlan !== ''">
+        <div class="center-aligner">
+          <a class="btn-common btn-blue bounce-white page-scroll slider-buttons" style="cursor: pointer;"
+             ng-click="home.defaults.selectedPlan = ''">Go back</a>
         </div>
       </div>
     </div>
