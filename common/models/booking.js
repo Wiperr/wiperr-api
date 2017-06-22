@@ -76,13 +76,13 @@ module.exports = function(Booking) {
                   json: razorPay
                 }).then((razorResponse) => {
                   console.log("Razor Payment URL generated", razorResponse.short_url);
-                  booking.payment.create({
+                  return booking.payment.create({
                     method: "razor",
                     amount: finalAmount,
                     paid: false,
                     paymentLink: razorResponse.short_url
                   }).then(() => {
-                    cb(null, booking);
+                    return cb(null, booking);
                   }).catch(cb);
                 }).catch(cb);
               }).catch(cb);
@@ -142,13 +142,15 @@ module.exports = function(Booking) {
         let customerInfo = booking.customer();
         let serviceInfo = booking.service();
         let paymentInfo = booking._payment;
-
+        
         Utilities.sendEmail({
           address: booking.address,
           firstName: customerInfo.firstName,
           phoneNumber: customerInfo.phoneNumber,
           serviceTitle: serviceInfo.name,
           serviceCost: paymentInfo.amount,
+          bookingLocation: booking.category === 'centre' ?
+            'H64 (Behind M2K White House), Sushant Lok 3, Sector 57, Gurgaon' : 'Doorstep',
           category: booking.category,
           mailList: mailList,
           customerEmail: customerInfo.email,

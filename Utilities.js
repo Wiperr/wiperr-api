@@ -20,7 +20,9 @@ module.exports.sendEmail = (options, callback) => {
       phoneNumber: options.phoneNumber,
       serviceTitle: options.serviceTitle,
       serviceCost: options.serviceCost,
-      paymentLink: options.paymentLink
+      paymentLink: options.paymentLink,
+      category: options.category,
+      bookingLocation: options.bookingLocation
     }
   };
 
