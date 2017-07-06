@@ -3,7 +3,7 @@ export class HomeController {
                toastr, Coupon, $timeout, $window) {
     'ngInject';
     let self = this;
-
+  
     self.defaults = {
       time: {1: '10:30', 2: '14:00', 3: '16:30'},
       date: {

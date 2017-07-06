@@ -268,7 +268,7 @@
             <div class="pricing_item dark_gray" ng-repeat="service in home.services">
               <h3 class="pricing_title">{{service.name}}</h3>
               <div class="pricing_price">
-                <span class="pricing_currency">Rs </span>
+                <span class="pricing_currency">Rs (inclusive of all taxes)</span>
                 {{(home.defaults.selectedPlan === 'doorstep') ? service.price : service.priceCentre}}
               </div>
               <p class="pricing_sentence">{{service.category}}</p>
