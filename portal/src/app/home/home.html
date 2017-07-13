@@ -634,7 +634,7 @@
           <h2 ng-if="home.displayBookingForm">Book a Car Wash</h2>
           <h2 ng-if="!home.displayBookingForm && !home.isBooking && !home.displayRequestCall">Contact Us</h2>
           <h2 ng-if="home.displayRequestCall && !home.displayBookingForm">Request a Call</h2>
-          <form class="form-inline" id="contact-form">
+          <form class="form-inline" id="contactForm" name="contactForm">
             <div class="row">
               <div class="col-md-12 center">
                 <div class="spinner" ng-if="home.isBooking">
@@ -664,10 +664,19 @@
             <section ng-if="home.displayRequestCall">
               <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                  <input type="text" class="form-control"  placeholder="Your Name" name="name" ng-model="home.callRequestDetails.name" required>
+                  <input type="text" class="form-control"
+                         placeholder="Your Name" name="crName"
+                         ng-model="home.callRequestDetails.name" required>
+                  <span ng-show="contactForm.crName.$error.pattern"
+                        style="color: darkred">Name is required</span>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                  <input type="number" class="form-control"  placeholder="You Phone Number" name="phoneNumber" ng-model="home.callRequestDetails.phoneNumber" required>
+                  <input type="number" class="form-control"
+                         placeholder="You Phone Number" name="crPhoneNumber"
+                         ng-pattern="/^[789]\d{9}$/"
+                         ng-model="home.callRequestDetails.phoneNumber" required>
+                  <span ng-show="contactForm.crPhoneNumber.$error.pattern"
+                        style="color: darkred">Enter a valid phone number</span>
                 </div>
                 <div class="col-xs-12 col-md-12">
                   <button class="btn-black btn-blue bounce-green" ng-click="home.requestCall()">Request</button>
@@ -675,7 +684,8 @@
               </div>
             </section>
             <wizard on-finish="home.completeBooking()" ng-if="home.displayBookingForm && !home.displayRequestCall">
-              <wz-step wz-title="Your Details">
+              <wz-step wz-title="Your Details"
+                       canexit="!contactForm.phoneNumber.$error.pattern && !contactForm.email.$error.pattern && home.exitValidation()">
                 <div class="row">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <fieldset disabled>
@@ -690,17 +700,23 @@
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <fieldset>
                       <label for="phoneNumber">Mobile Number</label>
-                      <input type="number" id="phoneNumber" class="form-control"
-                             placeholder="Enter 10 digit mobile number" ng-model="home.details.phoneNumber">
+                      <input type="number" id="phoneNumber" name="phoneNumber" class="form-control"
+                             ng-pattern="/^[789]\d{9}$/" placeholder="Enter 10 digit mobile number"
+                             ng-model="home.details.phoneNumber" ng-required="home.details.phoneNumber">
                     </fieldset>
+                    <span ng-show="contactForm.phoneNumber.$error.pattern"
+                          style="color: darkred">Enter a valid phone number</span>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <fieldset>
                       <label for="email">Email</label>
-                      <input type="text" id="email" class="form-control"
+                      <input type="text" id="email" class="form-control" name="email"
+                             ng-pattern='/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
                              placeholder="Enter your email id" ng-model="home.details.email">
+                      <span ng-show="contactForm.email.$error.pattern"
+                            style="color: darkred">Enter a valid email address</span>
                     </fieldset>
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">

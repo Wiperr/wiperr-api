@@ -147,6 +147,9 @@ export class HomeController {
     };
 
     self.requestCall = () => {
+      if (self.callRequestDetails.phoneNumber === '' || self.callRequestDetails.name === '') {
+        return toastr.warning(`Please enter name & phone number`, `Error`);
+      }
       self.toggleCallRequestForm();
       CallRequest.create(self.callRequestDetails).$promise.then(() => {
         toastr.success('Thank you', `We will contact you shortly!`);
@@ -166,6 +169,11 @@ export class HomeController {
         size: size,
         appendTo: parentElem
       });
+    };
+    
+    self.exitValidation = () => {
+      return self.details.phoneNumber !== '' && self.details.email !== '' &&
+        self.details.firstName !== '' && self.details.address !== '';
     };
 
     self.completeBooking = () => {
