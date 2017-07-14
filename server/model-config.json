@@ -44,5 +44,25 @@
   "Customer": {
     "dataSource": "db",
     "public": true
+  },
+  "MailingList": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Payment": {
+    "dataSource": "db",
+    "public": true
+  },
+  "CallRequest": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Credential": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Coupon": {
+    "dataSource": "db",
+    "public": true
   }
 }

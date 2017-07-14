@@ -1,6 +1,8 @@
 {
   "initial:before": {
-    "loopback#favicon": {}
+    "loopback#favicon": {
+      "params": "$!../resources/images/favicon.png"
+    }
   },
   "initial": {
     "compression": {},
@@ -41,9 +43,7 @@
     }
   },
   "files": {
-    "loopback#static": {
-      "params": "$!../portal"
-    }
+    "loopback#static": []
   },
   "final": {
     "loopback#urlNotFound": {}

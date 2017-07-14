@@ -9,6 +9,13 @@
     "phoneNumber": {
       "type": "string",
       "required": true
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "externalId": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -19,6 +26,13 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$ADMIN",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }

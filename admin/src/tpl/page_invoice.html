@@ -1,0 +1,75 @@
+<script>
+  n =  new Date();
+  y = n.getFullYear();
+  m = n.getMonth() + 1;
+  d = n.getDate();
+  document.getElementById("date").innerHTML = m + "/" + d + "/" + y
+</script>
+<div class="bg-light lter b-b wrapper-md hidden-print">
+  <a href class="btn btn-sm btn-info pull-right" onClick="window.print();">Print</a>
+  <h1 class="m-n font-thin h3">Invoice</h1>
+</div>
+<div class="wrapper-md">
+  <div>
+    <i class="fa fa-apple fa fa-3x"></i>
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Wiperr</h4>
+        <p><a href="http://www.wiperr.com">www.wiperr.com</a></p>
+        <p>H64 (Behind M2K White House) <br>
+          Sushant Lok 3, Sector 57<br>
+          Gurgaon
+        </p>
+        <p>
+          Telephone:  +91 9999664546
+        </p>
+      </div>
+      <div class="col-xs-6 text-right">
+        <p class="h4">#{{bookings.id}}</p>
+        <h5><p id="date"></p></h5>
+      </div>
+    </div>
+    <div class="well m-t bg-light lt">
+      <div class="row">
+        <div class="col-xs-6">
+          <strong>TO:</strong>
+          <h4>{{bookings.customer.firstName | uppercase}}</h4>
+          <p>
+            {{bookings.address}}<br>
+            Phone: {{bookings.customer.phoneNumber}}<br>
+            Email: {{bookings.customer.email}}<br>
+          </p>
+        </div>
+      </div>
+    </div>
+    <p class="m-t m-b">Booking Time: <strong>{{bookings.timeSlot}}</strong><br>
+        <!--Order status: <span class="label bg-success">Shipped</span><br>-->
+        Booking ID: <strong>{{bookings.id}}</strong>
+    </p>
+    <div class="line"></div>
+    <table class="table table-striped bg-white b-a">
+      <thead>
+        <tr>
+          <th style="width: 60px">QTY</th>
+          <th>DESCRIPTION</th>
+          <th style="width: 90px">UNIT PRICE</th>
+          <th style="width: 90px">CGST</th>
+          <th style="width: 90px">SGST</th>
+          <th style="width: 90px">TOTAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>{{bookings.service.name}}</td>
+          <td>{{bookings.service.price}}</td>
+          <td>$749.00</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
+          <td><strong>$1607.00</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
