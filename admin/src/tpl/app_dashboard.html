@@ -223,6 +223,7 @@
             <th st-sort="birthDate">Time Slot</th>
             <th st-sort="price">Price</th>
             <th>Actions</th>
+            <th>Invoice</th>
           </tr>
           <!--<tr>
             <th>
@@ -245,6 +246,8 @@
               <button type="button" ng-click="bookings.removeBooking(booking, $index)" class="btn btn-xs btn-default">
                 <i class="fa fa-trash"></i>
               </button>
+            </td>
+            <td><a ui-sref='app.page.invoice({bookingId: "{{booking.id}}"})' class="block panel padder-v item card">Create Invoice</a>
             </td>
           </tr>
           </tbody>

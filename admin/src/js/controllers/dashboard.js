@@ -85,7 +85,6 @@ app
           getBookings();
         }, $log.debug);
       };
-
       $scope.coupons.removeCoupon = function(coupon) {
         Coupon.deleteById({id: coupon.id}).$promise.then(function() {
           getCoupons();

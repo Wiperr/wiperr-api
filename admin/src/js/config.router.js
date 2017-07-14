@@ -218,8 +218,12 @@ angular.module('app')
             templateUrl: 'tpl/page_search.html'
           })
           .state('app.page.invoice', {
-            url: '/invoice',
-            templateUrl: 'tpl/page_invoice.html'
+            url: '/invoice?bookingId',
+            templateUrl: 'tpl/page_invoice.html',
+            controller: 'InvoiceCtrl',
+            resolve: load([
+              'js/controllers/invoice.js',
+            ])
           })
           .state('app.page.price', {
             url: '/price',
