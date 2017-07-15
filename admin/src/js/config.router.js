@@ -217,7 +217,7 @@ angular.module('app')
             url: '/search',
             templateUrl: 'tpl/page_search.html'
           })
-          .state('app.page.invoice', {
+          .state('app.invoice', {
             url: '/invoice?bookingId',
             templateUrl: 'tpl/page_invoice.html',
             controller: 'InvoiceCtrl',
