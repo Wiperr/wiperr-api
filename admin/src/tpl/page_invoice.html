@@ -60,12 +60,18 @@
       <tr>
         <td>1</td>
         <td>{{bookings.service.name}}</td>
-        <td>{{bookings.service.price}}</td>
-        <td>$749.00</td>
+        <td>{{bookings.service.price | number : 2}}</td>
+        <td>{{bookings.service.gst/2}}</td>
+        <td>{{bookings.service.gst/2}}</td>
+        <td>{{total | number : 2}}</td>
       </tr>
       <tr>
-        <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
-        <td><strong>$1607.00</strong></td>
+        <td colspan="5" class="text-right no-border"><strong>Discount</strong></td>
+        <td><strong>{{discount}}%</strong></td>
+      </tr>
+      <tr>
+        <td colspan="5" class="text-right no-border"><strong>Total</strong></td>
+        <td><strong>{{total*(1 - (discount/100)) | number : 2}}</strong></td>
       </tr>
       </tbody>
     </table>
@@ -176,7 +182,7 @@
           doc.addPage();
         totalPieces--;
       });
-      doc.save('Invoice at' +todayDate+'.pdf');
+      doc.save('Invoice at ' +todayDate+'.pdf');
       form.width(cache_width);
     }
    /* function footer(){

@@ -3,7 +3,7 @@
  */
 app
   .controller('InvoiceCtrl',
-      function($log, $scope, $stateParams, Booking, Customer, Service) {
+      function($log, $scope, $stateParams, Booking, Customer, Service, Coupon) {
         $scope.bookings = {
           show: true
         }
@@ -13,9 +13,10 @@ app
           show: true
       }
 
-        function getCustomerById(id) {
+      $scope.total = 0;
+      $scope.discount = 0;
 
-          alert(id);
+        function getCustomerById(id) {
           Customer.findById({id: id}).$promise.then(function(response) {
             $scope.bookings.customer = response;
             //alert($scope.bookings.customer.firstName);
@@ -25,7 +26,16 @@ app
         function getServiceById(id) {
           Service.findById({id: id}).$promise.then(function(response) {
             $scope.bookings.service = response;
-            //alert($scope.bookings.service.name);
+            $scope.total = $scope.bookings.service.price*(1 + ($scope.bookings.service.gst/100));
+          });
+        }
+
+        function getCouponById(id) {
+          Coupon.findById({id: id}).$promise.then(function(response) {
+            if(response.discount > 0)
+            $scope.discount = response.discount;
+            alert($scope.discount);
+            //alert($scope.netBalance);
           });
         }
 
@@ -37,6 +47,8 @@ app
           //alert($scope.customer.id);
           getCustomerById($scope.bookings.customerId);
           getServiceById($scope.bookings.serviceId);
+          getCouponById($scope.bookings.couponId);
+          //alert($scope.total);
         }, $log.debug);
 
       }

@@ -27,6 +27,10 @@
     "priceCentre": {
       "type": "number",
       "required": true
+    },
+    "gst": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
