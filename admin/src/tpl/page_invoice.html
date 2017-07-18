@@ -60,10 +60,10 @@
       <tr>
         <td>1</td>
         <td>{{bookings.service.name}}</td>
+        <td>{{withoutTax | number : 2}}</td>
+        <td>{{bookings.service.gst/2}}</td>
+        <td>{{bookings.service.gst/2}}</td>
         <td>{{total | number : 2}}</td>
-        <td>{{bookings.service.gst/2}}</td>
-        <td>{{bookings.service.gst/2}}</td>
-        <td>{{bookings.service.price | number : 2}}</td>
       </tr>
       <tr>
         <td colspan="5" class="text-right no-border"><strong>Discount</strong></td>
@@ -71,7 +71,7 @@
       </tr>
       <tr>
         <td colspan="5" class="text-right no-border"><strong>Total</strong></td>
-        <td><strong>{{bookings.service.price*(1 - (discount/100)) | number : 2}}</strong></td>
+        <td><strong>{{total*(1 - (discount/100)) | number : 2}}</strong></td>
       </tr>
       </tbody>
     </table>
