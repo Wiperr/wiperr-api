@@ -223,6 +223,7 @@
             <th st-sort="birthDate">Time Slot</th>
             <th st-sort="price">Price</th>
             <th>Actions</th>
+            <th>Invoice</th>
           </tr>
           <!--<tr>
             <th>
@@ -242,9 +243,14 @@
             <td>{{booking.timeSlot}}</td>
             <td>{{booking._payment.amount}}</td>
             <td>
-              <button type="button" ng-click="bookings.removeBooking(booking, $index)" class="btn btn-xs btn-default">
+              <button type="button" ng-click="bookings.removeBooking(booking, $index)" class="btn btn-xs btn-warning">
                 <i class="fa fa-trash"></i>
               </button>
+            </td>
+            <td><a ui-sref='app.invoice({bookingId: "{{booking.id}}"})' class="btn btn-info btn-xs">
+              <i class="fa fa-envelope-square"> Create Invoice</i>
+
+            </a>
             </td>
           </tr>
           </tbody>

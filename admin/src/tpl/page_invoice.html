@@ -1,17 +1,15 @@
-<script>
-  n =  new Date();
-  y = n.getFullYear();
-  m = n.getMonth() + 1;
-  d = n.getDate();
-  document.getElementById("date").innerHTML = m + "/" + d + "/" + y
-</script>
 <div class="bg-light lter b-b wrapper-md hidden-print">
-  <a href class="btn btn-sm btn-info pull-right" onClick="window.print();">Print</a>
+  <div class=" pull-right">
+  <a href class="btn btn-sm btn-info " onClick="openPreview();"><i class="fa fa-file"> Preview</i></a>
+  <a href class="btn btn-sm btn-info " onClick="exportInvoicePDF();"><i class="fa fa-file-pdf-o"> PDF</i></a>
+  <a href class="btn btn-sm btn-info " onClick="window.print();"><i class="fa fa-print"> Print</i></a>
+  </div>
   <h1 class="m-n font-thin h3">Invoice</h1>
 </div>
-<div class="wrapper-md">
-  <div>
-    <i class="fa fa-apple fa fa-3x"></i>
+<div class="wrapper-lg">
+  <form class="ui form">
+  <div id="invoice">
+    <img src="img/wiperr-symbol.png">
     <div class="row">
       <div class="col-xs-6">
         <h4>Wiperr</h4>
@@ -26,7 +24,7 @@
       </div>
       <div class="col-xs-6 text-right">
         <p class="h4">#{{bookings.id}}</p>
-        <h5><p id="date"></p></h5>
+        <h5><p id="date" ></p></h5>
       </div>
     </div>
     <div class="well m-t bg-light lt">
@@ -49,27 +47,151 @@
     <div class="line"></div>
     <table class="table table-striped bg-white b-a">
       <thead>
-        <tr>
-          <th style="width: 60px">QTY</th>
-          <th>DESCRIPTION</th>
-          <th style="width: 90px">UNIT PRICE</th>
-          <th style="width: 90px">CGST</th>
-          <th style="width: 90px">SGST</th>
-          <th style="width: 90px">TOTAL</th>
-        </tr>
+      <tr>
+        <th style="width: 60px">QTY</th>
+        <th>DESCRIPTION</th>
+        <th style="width: 90px">UNIT PRICE</th>
+        <th style="width: 90px">CGST</th>
+        <th style="width: 90px">SGST</th>
+        <th style="width: 90px">TOTAL</th>
+      </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>{{bookings.service.name}}</td>
-          <td>{{bookings.service.price}}</td>
-          <td>$749.00</td>
-        </tr>
-        <tr>
-          <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
-          <td><strong>$1607.00</strong></td>
-        </tr>
+      <tr>
+        <td>1</td>
+        <td>{{bookings.service.name}}</td>
+        <td>{{total | number : 2}}</td>
+        <td>{{bookings.service.gst/2}}</td>
+        <td>{{bookings.service.gst/2}}</td>
+        <td>{{bookings.service.price | number : 2}}</td>
+      </tr>
+      <tr>
+        <td colspan="5" class="text-right no-border"><strong>Discount</strong></td>
+        <td><strong>{{discount}}%</strong></td>
+      </tr>
+      <tr>
+        <td colspan="5" class="text-right no-border"><strong>Total</strong></td>
+        <td><strong>{{total*(1 - (discount/100)) | number : 2}}</strong></td>
+      </tr>
       </tbody>
     </table>
   </div>
+  </form>
 </div>
+<script>
+
+  todayDate =  new Date();
+  y = todayDate.getFullYear();
+  m = todayDate.getMonth() + 1;
+  d = todayDate.getDate();
+  document.getElementById("date").innerHTML = m + "/" + d + "/" + y
+
+
+  var
+    form ,
+    cache_width ,
+    a4 ;
+  var canvasImage,
+    winHeight ,
+    formHeight ,
+    formWidth  ;
+
+  function openPreview(){
+    form = $('.form');
+    html2canvas(form,{
+      onrendered: function(canvas) {
+        var dataUrl = canvas.toDataURL("image/png");
+        window.open(dataUrl);
+      }
+    });
+  }
+
+  function exportInvoicePDF() {
+
+    var imagePieces = [];
+    function getSizing() {
+
+      form = $('.form');
+      cache_width = form.width();
+      a4 = [595.28, 842];
+      winHeight = a4[1];
+      formHeight = form.height();
+      formWidth  = form.width();
+      console.log('cache_width ---> ' + cache_width);
+      console.log('form.height  ---> ' + formHeight);
+      console.log('formWidth ---> ' + formWidth);
+    }
+
+    // create canvas object
+    function getCanvas() {
+      if (a4[0] < formWidth) {
+        form.width((a4[0])).css('max-width', 'none');
+        formWidth = form.width();
+      }
+      console.log('form width ---> ' +form.width() );
+      return html2canvas(form, {
+        imageTimeout: 2000,
+        removeContainer: true
+      },{
+        onrendered: function(canvas) {
+          var dataUrl = canvas.toDataURL();
+          window.open(dataUrl, "toDataURL() image", "width=800, height=800");
+        }
+      });
+
+    }
+
+    // ACTION STARTS HERE:
+
+    getSizing();
+    getCanvas().then(function(canvas){
+      canvasImage = new Image();
+      canvasImage.src= canvas.toDataURL("image/png");
+      canvasImage.onload = splitImage;
+    });
+    // chop image horizontally
+    function splitImage(e) {
+      var totalImgs = Math.round(formHeight/winHeight);
+      console.log('totalImgs count'+totalImgs);
+      for(var i = 0; i < totalImgs; i++) {
+        var tempCanvas = document.createElement('canvas'),
+            ctx = tempCanvas.getContext('2d');
+        tempCanvas.width = formWidth;
+        tempCanvas.height = winHeight;
+        //                    source region                   dest. region
+        ctx.drawImage(canvasImage, 0, i * winHeight, formWidth, winHeight, 0, 0, tempCanvas.width, tempCanvas.height);
+
+        imagePieces.push(tempCanvas.toDataURL("image/png"));
+      }
+      console.log(imagePieces.length);
+      createPDF();
+    }
+    // add global variable for jsPDF
+    var doc = new jsPDF({
+      unit: 'px',
+      format: 'a4'
+    });
+    var totalPieces =0;
+    // crete pdf using chopped images
+    function createPDF() {
+      totalPieces = imagePieces.length - 1;
+      imagePieces.forEach(function(img){
+        doc.addImage(img, 'JPEG', 20, 20);
+       /* footer();*/
+        if(totalPieces)
+          doc.addPage();
+        totalPieces--;
+      });
+      doc.save('Invoice at ' +todayDate+'.pdf');
+      form.width(cache_width);
+    }
+   /* function footer(){
+      var str = "Page " + doc.page;
+      if (totalPieces) {
+        str = str + "/" + totalPieces;
+      }
+      doc.text(150,285, str); //print number bottom right
+    }*/
+
+  }
+</script>
