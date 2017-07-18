@@ -26,7 +26,7 @@ app
         function getServiceById(id) {
           Service.findById({id: id}).$promise.then(function(response) {
             $scope.bookings.service = response;
-            $scope.total = $scope.bookings.service.price*(1 + ($scope.bookings.service.gst/100));
+            $scope.total = $scope.bookings.service.price*(1 - ($scope.bookings.service.gst/100));
           });
         }
 
@@ -34,7 +34,7 @@ app
           Coupon.findById({id: id}).$promise.then(function(response) {
             if(response.discount > 0)
             $scope.discount = response.discount;
-            alert($scope.discount);
+            //alert($scope.discount);
             //alert($scope.netBalance);
           });
         }
