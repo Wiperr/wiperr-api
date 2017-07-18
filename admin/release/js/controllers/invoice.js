@@ -13,7 +13,8 @@ app
           show: true
       }
 
-      $scope.total = 0;
+      $scope.withoutTax = 0;
+        $scope.total = 0;
       $scope.discount = 0;
 
         function getCustomerById(id) {
@@ -26,7 +27,16 @@ app
         function getServiceById(id) {
           Service.findById({id: id}).$promise.then(function(response) {
             $scope.bookings.service = response;
-            $scope.total = $scope.bookings.service.price*(1 - ($scope.bookings.service.gst/100));
+            alert($scope.bookings.category);
+            if($scope.bookings.category == "doorstep") {
+              $scope.withoutTax = $scope.bookings.service.price * (1 - ($scope.bookings.service.gst / 100));
+              $scope.total = $scope.bookings.service.price;
+            }
+            else {
+              $scope.withoutTax = $scope.bookings.service.priceCentre * (1 - ($scope.bookings.service.gst / 100));
+              $scope.total = $scope.bookings.service.priceCentre;
+            }
+            alert($scope.withoutTax);
           });
         }
 
