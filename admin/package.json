@@ -10,6 +10,7 @@
   "author": "Flatfull",
   "license": "Envato REGULAR LICENSE",
   "dependencies": {
+    "grunt-cli": "^1.2.0",
     "grunt-contrib-cssmin": "^0.14.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-usemin": "^3.1.1",
