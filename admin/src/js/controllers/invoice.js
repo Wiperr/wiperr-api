@@ -72,30 +72,9 @@ app
               dataURL: imageURL
             }).$promise.then((response) => {
               alert('Email sent successfully');
-              /*toastr.success('Thank you', `Your booking for ${response.timeSlot} is confirmed`);
-               googleTrackConversion('booking-confirmed');
-               if (!self.displayBookingForm) {
-               clearDetails();
-               }*/
             });
           }
         });
-        //console.log(img);
-        //console.log(dataUrl);
-
-
-        /*sendEmail({
-         mailList: bookings.customer.email,
-         firstName: bookings.customer.firstName,
-         phoneNumber: bookings.customer.phoneNumber,
-         type: "requestCall"
-         }, (error, info) => {
-         if (error) return next(error);
-
-         console.log('Message %s sent: %s', info.messageId, info.response);
-         next();
-         });*/
-
       }
     });
 
