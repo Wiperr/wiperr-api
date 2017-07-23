@@ -142,7 +142,7 @@ module.exports = function(Booking) {
         let customerInfo = booking.customer();
         let serviceInfo = booking.service();
         let paymentInfo = booking._payment;
-        
+
         Utilities.sendEmail({
           address: booking.address,
           firstName: customerInfo.firstName,
@@ -197,5 +197,48 @@ module.exports = function(Booking) {
     ],
     returns: {type: "object", root: true},
     http: {path: "/book", verb: "post"}
+  });
+  Booking.invoiceEmail = (req, res, info, cb) => {
+    Booking.findById(info.bookingId, {include: ["customer", "service"]}, (error, booking) => {
+      if (error) {
+        console.log(error);
+        return next();
+      }
+      let customerInfo = booking.customer();
+      let serviceInfo = booking.service();
+      let serviceName = "";
+      if(serviceInfo){
+        serviceName = serviceInfo.name;
+      };
+      console.log("sending email to", customerInfo.firstName + " for service : - " + serviceName);
+      Utilities.sendEmail({
+          mailList: customerInfo.email,
+          firstName: customerInfo.firstName,
+          serviceName: serviceName,
+          invoiceImage: info.dataURL,
+          type: "invoice"
+        }, (error, info) => {
+          if (error) return next(error);
+          console.log('Message %s sent: %s', info.messageId, info.response);
+      });
+    });
+
+  };
+  Booking.remoteMethod("invoiceEmail", {
+    accepts: [
+      {arg: "req", type: "object", http: {source: "req"}},
+      {arg: "res", type: "object", http: {source: "res"}},
+      {
+        arg: "info",
+        type: "object",
+        required: true,
+        http: {source: "body"},
+        default: '{\n' +
+        '"bookingId": "string",\n ' +
+        '"dataURL": "string"\n}'
+      }
+    ],
+    returns: {type: "object", root: true},
+    //http: {path: "/invoiceEmail", verb: "post"}
   });
 };

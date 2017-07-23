@@ -115,6 +115,35 @@ module.exports.sendEmail = (options, callback) => {
 
             callback(null, info);
           });
+        }); break;
+        case "invoice":
+          template("invoice", locals, (error, html) => {
+            if (error) {
+              console.log(error);
+              return callback(error);
+            }
+
+            let mailOptions = {
+              from: '"Wiperr Invoice" <info@wiperr.com>',
+              to: options.mailList,
+              subject: 'Your invoice for the service - ' + options.serviceName,
+             /* html: 'Your invoice : <img src="cid:uniqueInvoiceMailImage"/>',*/
+              html: html,
+              attachments: [{
+                content: options.invoiceImage.split("base64,")[1],
+                encoding: 'base64',
+                cid: 'uniqueInvoiceMailImage'
+              }]
+            };
+
+         transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.log(error);
+              return callback(error);
+            }
+
+            callback(null, info);
+        });
         });
     }
   });

@@ -705,6 +705,11 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "POST",
             },
 
+            "invoiceEmail": {
+              url: urlBase + "/Bookings/invoiceEmail",
+              method: "POST",
+            },
+
             // INTERNAL. Use Service.bookings.findById() instead.
             "::findById::Service::bookings": {
               params: {

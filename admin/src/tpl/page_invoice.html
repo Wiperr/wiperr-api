@@ -1,13 +1,14 @@
 <div class="bg-light lter b-b wrapper-md hidden-print">
   <div class=" pull-right">
-  <a href class="btn btn-sm btn-info " onClick="openPreview();"><i class="fa fa-file"> Preview</i></a>
-  <a href class="btn btn-sm btn-info " onClick="exportInvoicePDF();"><i class="fa fa-file-pdf-o"> PDF</i></a>
-  <a href class="btn btn-sm btn-info " onClick="window.print();"><i class="fa fa-print"> Print</i></a>
+    <a href class="btn btn-sm btn-info " ng-click="sendInvoiceEmail();"><i class="fa fa-mail-reply-all"> Email</i></a>
+    <a href class="btn btn-sm btn-info " onClick="openPreview();"><i class="fa fa-file"> Preview</i></a>
+    <a href class="btn btn-sm btn-info " onClick="exportInvoicePDF();"><i class="fa fa-file-pdf-o"> PDF</i></a>
+    <a href class="btn btn-sm btn-info " onClick="window.print();"><i class="fa fa-print"> Print</i></a>
   </div>
   <h1 class="m-n font-thin h3">Invoice</h1>
 </div>
 <div class="wrapper-lg">
-  <form class="ui form">
+  <form class="ui form" id="invoice-form">
   <div id="invoice">
     <img src="img/wiperr-symbol.png">
     <div class="row">
@@ -79,7 +80,6 @@
   </form>
 </div>
 <script>
-
   todayDate =  new Date();
   y = todayDate.getFullYear();
   m = todayDate.getMonth() + 1;
@@ -95,6 +95,8 @@
     winHeight ,
     formHeight ,
     formWidth  ;
+
+
 
   function openPreview(){
     form = $('.form');
