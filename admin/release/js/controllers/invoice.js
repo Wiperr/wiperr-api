@@ -4,25 +4,26 @@
 app
   .controller('InvoiceCtrl',
     function ($log, $scope, $stateParams, Booking, Customer, Service, Coupon, Client) {
+
       $scope.bookings = {
         show: true
       };
-      
+
       $scope.customer = {
         id: "",
         show: true
       };
-      
+
       $scope.withoutTax = 0;
       $scope.total = 0;
       $scope.discount = 0;
-      
+
       function getCustomerById(id) {
         Client.getUser(null, {where: {id: id}}).$promise.then(function (response) {
           $scope.bookings.customer = response[0];
         });
       }
-      
+
       function getServiceById(id) {
         Service.findById({id: id}).$promise.then(function (response) {
           $scope.bookings.service = response;
@@ -35,7 +36,7 @@ app
           }
         });
       }
-      
+
       function getCouponById(id) {
         Coupon.findById({id: id}).$promise.then(function (response) {
           if (response.discount > 0)
@@ -44,8 +45,8 @@ app
           //alert($scope.netBalance);
         });
       }
-      
-      
+
+
       function getBookingsById() {
         var id = $stateParams.bookingId;
         Booking.findById({id: id}).$promise.then(function (response) {
@@ -56,9 +57,25 @@ app
           getCouponById($scope.bookings.couponId);
           //alert($scope.total);
         }, $log.debug);
-        
+
       }
-      
+
       getBookingsById();
       //getCustomerById();
+      $scope.sendInvoiceEmail = function() {
+        form = $('#invoice-form');
+        html2canvas(form,{
+          onrendered: function(canvas) {
+            var imageURL = canvas.toDataURL("image/png");
+            Booking.invoiceEmail({
+              bookingId: $stateParams.bookingId,
+              dataURL: imageURL
+            }).$promise.then((response) => {
+              alert('Email sent successfully');
+            });
+          }
+        });
+      }
     });
+
+

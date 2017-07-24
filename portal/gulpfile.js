@@ -14,7 +14,7 @@ var gulp = require('gulp');
  *  in order to load all gulp tasks
  */
 fs.readdirSync('./gulp').filter(function(file) {
-  return (/\.(js|coffee)$/i).test(file);
+  return (/\.(html|js|coffee)$/i).test(file);
 }).map(function(file) {
   require('./gulp/' + file);
 });
