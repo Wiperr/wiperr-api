@@ -239,6 +239,6 @@ module.exports = function(Booking) {
       }
     ],
     returns: {type: "object", root: true},
-    //http: {path: "/invoiceEmail", verb: "post"}
+    http: {path: "/invoiceEmail", verb: "post"}
   });
 };
