@@ -6,8 +6,8 @@
  */
 
 app
-  .controller('DashboardController', ['$log', '$scope', 'Booking', 'Customer', '$timeout', 'MailingList', 'CallRequest', 'Coupon',
-    function($log, $scope, Booking, Customer, $timeout, MailingList, CallRequest, Coupon) {
+  .controller('DashboardController', ['$log', '$scope', 'Booking', 'Customer', '$timeout', 'MailingList', 'CallRequest', 'Coupon','Client',
+    function($log, $scope, Booking, Customer, $timeout, MailingList, CallRequest, Coupon,Client) {
       $scope.bookings = {
         count: 0,
         list: [],
@@ -177,14 +177,11 @@ app
 
 
       $scope.getCustomers = function() {
-
-        Client.getUser().$promise.then(function (response) {
-          //Customer.find({}).$promise.then(function (response) {
+        Client.getUser(null,null).$promise.then(function (response) {
           $scope.customers.list = response;
-          alert($scope.customers.list.length);
-          /*angular.forEach($scope.customers.list, function(value, key){
+          angular.forEach($scope.customers.list, function(value, key){
             console.log(key + ': ' + value.firstName);
-          });*/
+          });
         });
       };
 
