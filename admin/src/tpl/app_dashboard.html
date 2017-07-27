@@ -413,6 +413,53 @@
         </table>
       </div>
       <!-- / tasks -->
+
+      <!-- Robin view -->
+      <div class="panel panel-default" ng-if="customers.list.length > 0 && customers.show">
+        <div class="panel-heading">Customer Details</div>
+        <div class="panel-body">
+          <form>
+            <label>Number of bookings to show per page</label>
+            <input class="input-sm form-control" name="items" id="items" type="number" ng-model="customers.perPage" >
+          </form>
+        </div>
+        <table st-table="customers.list" class="table table-striped">
+          <thead>
+          <tr>
+            <th st-sort="customer.firstName">Customer Name</th>
+            <th st-sort="email">Email</th>
+            <th st-sort="customer.phoneNumber">Phone Number</th>
+            <th>View Bookings</th>
+
+          </tr>
+          <!--<tr>
+            <th>
+              <input st-search="'customer.firstName'" placeholder="Search for Customer Name" class="input-sm form-control" type="search"/>
+            </th>
+            <th colspan="4">
+              <input st-search placeholder="Global Search" class="input-sm form-control" type="search"/>
+            </th>
+          </tr>-->
+          </thead>
+          <tbody>
+          <tr ng-repeat="customer in customers.list">
+            <td>{{customer.firstName | uppercase}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.phoneNumber}}</td>
+            <td><a ui-sref='app.invoice({bookingId: "{{booking.id}}"})' class="btn btn-info btn-xs">
+            <i class="fa fa-envelope-square"> View Booking</i></a></td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="5" class="text-center">
+              <div st-pagination="" st-items-by-page="customers.perPage" st-displayed-pages="7" class="no-margin"></div>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- / Robin view -->
     </div>
   </div>
 

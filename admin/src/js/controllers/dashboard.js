@@ -36,8 +36,10 @@ app
         discount: 0
       };
 
-      $scope.customers = {
-        count: 0
+      $scope.customers ={
+        list: [],
+        count: 0,
+        show: true
       };
 
       function updateBookingCount() {
@@ -72,6 +74,7 @@ app
       }
 
       getBookings();
+      //getCustomer();
       getMailers();
       getCallRequests();
       getCoupons();
@@ -171,4 +174,19 @@ app
         return res;
       };
       $scope.d4 = $scope.getRandomData();
+
+
+      $scope.getCustomers = function() {
+
+        Client.getUser().$promise.then(function (response) {
+          //Customer.find({}).$promise.then(function (response) {
+          $scope.customers.list = response;
+          alert($scope.customers.list.length);
+          /*angular.forEach($scope.customers.list, function(value, key){
+            console.log(key + ': ' + value.firstName);
+          });*/
+        });
+      };
+
+      $scope.getCustomers();
     }]);
