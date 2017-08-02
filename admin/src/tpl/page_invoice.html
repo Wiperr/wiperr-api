@@ -20,11 +20,11 @@
           Gurgaon
         </p>
         <p>
-          Telephone:  +91 9999664546
+          Telephone:  +91 8010145145
         </p>
       </div>
       <div class="col-xs-6 text-right">
-        <p class="h4">#{{bookings.id}}</p>
+        <p class="h4">GSTIN: 06AABCW6184F1Z8</p>
         <h5><p id="date" ></p></h5>
       </div>
     </div>
@@ -52,8 +52,7 @@
         <th style="width: 60px">QTY</th>
         <th>DESCRIPTION</th>
         <th style="width: 90px">UNIT PRICE</th>
-        <th style="width: 90px">CGST</th>
-        <th style="width: 90px">SGST</th>
+        <th style="width: 90px">DISCOUNT</th>
         <th style="width: 90px">TOTAL</th>
       </tr>
       </thead>
@@ -62,17 +61,20 @@
         <td>1</td>
         <td>{{bookings.service.name}}</td>
         <td>{{withoutTax | number : 2}}</td>
-        <td>{{bookings.service.gst/2}}%</td>
-        <td>{{bookings.service.gst/2}}%</td>
-        <td>{{total | number : 2}}</td>
+        <td>-{{discount}}</td>
+        <td>{{(withoutTax-discount) | number : 2}}</td>
       </tr>
       <tr>
-        <td colspan="5" class="text-right no-border"><strong>Discount</strong></td>
-        <td><strong>{{discount}}%</strong></td>
+        <<td colspan="4" class="text-right no-border">CGST</td>
+        <td>{{bookings.service.gst/2}}%</td>
       </tr>
       <tr>
-        <td colspan="5" class="text-right no-border"><strong>Total</strong></td>
-        <td><strong>{{withoutTax*(1 - (discount/100)) | number : 2}}</strong></td>
+        <td colspan="4" class="text-right no-border">SGST</td>
+        <td>{{bookings.service.gst/2}}%</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="text-right no-border"><strong>Net Total</strong></td>
+        <td><strong>{{(withoutTax -discount)*(1+(bookings.service.gst/100))| number : 2}}</strong></td>
       </tr>
       </tbody>
     </table>

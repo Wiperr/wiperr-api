@@ -6,8 +6,8 @@
  */
 
 app
-  .controller('DashboardController', ['$log', '$scope', 'Booking', 'Customer', '$timeout', 'MailingList', 'CallRequest', 'Coupon',
-    function($log, $scope, Booking, Customer, $timeout, MailingList, CallRequest, Coupon) {
+  .controller('DashboardController', ['$log', '$scope', 'Booking', 'Customer', '$timeout', 'MailingList', 'CallRequest', 'Coupon','Client',
+    function($log, $scope, Booking, Customer, $timeout, MailingList, CallRequest, Coupon,Client) {
       $scope.bookings = {
         count: 0,
         list: [],
@@ -36,9 +36,24 @@ app
         discount: 0
       };
 
-      $scope.customers = {
-        count: 0
+      $scope.customers ={
+        list: [],
+        count: 0,
+        show: true
       };
+
+      $scope.custbookings = {
+        count: 0,
+        list: [],
+        perPage: 10,
+        show: true
+      };
+
+      $scope.customer = {
+        expanded: false
+      };
+
+      $scope.isVisible = false;
 
       function updateBookingCount() {
         Booking.count().$promise.then(function(response) {
@@ -71,10 +86,18 @@ app
         }, $log.debug);
       }
 
+      function showHide()
+      {
+        alert($scope.isVisible);
+        $scope.isVisible = $scope.isVisible & false;
+      }
+
       getBookings();
+      //getCustomer();
       getMailers();
       getCallRequests();
       getCoupons();
+
 
       /*Customer.count().$promise.then(function(response) {
        $scope.customers.count = response.count;
@@ -171,4 +194,19 @@ app
         return res;
       };
       $scope.d4 = $scope.getRandomData();
+
+
+      $scope.getCustomers = function() {
+        Client.getUser(null,null).$promise.then(function (response) {
+          $scope.customers.list = response;
+        });
+      };
+
+      $scope.setValue = function(){
+        $scope.discount = $scope.discountAmount;
+        alert($scope.discount);
+      }
+
+
+      $scope.getCustomers();
     }]);
