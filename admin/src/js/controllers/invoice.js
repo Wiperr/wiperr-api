@@ -48,7 +48,7 @@ app
           $scope.discount = discount;
         }
         else {
-          alert(id);
+          //alert(id);
           Coupon.findById({id: id}).$promise.then(function (response) {
             if ($scope.discountPercentage > 0) {
               $scope.discount = $scope.withoutTax * response.discount / 100;
