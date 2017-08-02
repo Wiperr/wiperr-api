@@ -42,6 +42,19 @@ app
         show: true
       };
 
+      $scope.custbookings = {
+        count: 0,
+        list: [],
+        perPage: 10,
+        show: true
+      };
+
+      $scope.customer = {
+        expanded: false
+      };
+
+      $scope.isVisible = false;
+
       function updateBookingCount() {
         Booking.count().$promise.then(function(response) {
           $scope.bookings.count = response.count;
@@ -73,11 +86,18 @@ app
         }, $log.debug);
       }
 
+      function showHide()
+      {
+        alert($scope.isVisible);
+        $scope.isVisible = $scope.isVisible & false;
+      }
+
       getBookings();
       //getCustomer();
       getMailers();
       getCallRequests();
       getCoupons();
+
 
       /*Customer.count().$promise.then(function(response) {
        $scope.customers.count = response.count;
@@ -179,11 +199,14 @@ app
       $scope.getCustomers = function() {
         Client.getUser(null,null).$promise.then(function (response) {
           $scope.customers.list = response;
-          angular.forEach($scope.customers.list, function(value, key){
-            console.log(key + ': ' + value.firstName);
-          });
         });
       };
+
+      $scope.setValue = function(){
+        $scope.discount = $scope.discountAmount;
+        alert($scope.discount);
+      }
+
 
       $scope.getCustomers();
     }]);

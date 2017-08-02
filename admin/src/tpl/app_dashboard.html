@@ -205,7 +205,7 @@
       <!-- / latest bookings -->
 
       <!-- tasks -->
-      <div class="panel panel-default" ng-if="bookings.list.length > 0 && bookings.show">
+      <td class="panel panel-default" ng-if="bookings.list.length > 0 && bookings.show">
         <div class="panel-heading">Booking Details</div>
         <div class="panel-body">
           <form>
@@ -247,11 +247,16 @@
                 <i class="fa fa-trash"></i>
               </button>
             </td>
-            <td><a ui-sref='app.invoice({bookingId: "{{booking.id}}"})' class="btn btn-info btn-xs">
+            <td><a class="btn btn-info btn-xs" ui-sref='app.invoice({bookingId: "{{booking.id}}", discount: discountAmount})'>
               <i class="fa fa-envelope-square"> Create Invoice</i>
-
             </a>
             </td>
+          </tr>
+          <tr>
+            <td colspan="7" class="text-right no-border">
+              <label>Discount value</label>
+            </td>
+            <td><input class="input-sm form-control" id="discAmount" type="text" ng-model="discountAmount" ng-init="0"/></td>
           </tr>
           </tbody>
           <tfoot>
@@ -426,10 +431,10 @@
         <table st-table="customers.list" class="table table-striped">
           <thead>
           <tr>
+            <th>View Bookings</th>
             <th st-sort="customer.firstName">Customer Name</th>
             <th st-sort="email">Email</th>
             <th st-sort="customer.phoneNumber">Phone Number</th>
-            <th>View Bookings</th>
 
           </tr>
           <!--<tr>
@@ -440,14 +445,45 @@
               <input st-search placeholder="Global Search" class="input-sm form-control" type="search"/>
             </th>
           </tr>-->
-          </thead>
+         </thead>
           <tbody>
-          <tr ng-repeat="customer in customers.list">
+          <tr ng-repeat-start="customer in customers.list">
+            <td>
+              <button ng-if="customer.expanded" ng-click="customer.expanded=false">-</button>
+              <button ng-if="!customer.expanded" ng-click="customer.expanded=true">+</button>
+            </td>
             <td>{{customer.firstName | uppercase}}</td>
             <td>{{customer.email}}</td>
             <td>{{customer.phoneNumber}}</td>
-            <td><a ui-sref='app.invoice({bookingId: "{{booking.id}}"})' class="btn btn-info btn-xs">
-            <i class="fa fa-envelope-square"> View Booking</i></a></td>
+          <!-- <td ng-if="customer.expanded">
+
+              <table st-table="bookings.list" class="table table-striped">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="booking in bookings.list" ng-if="booking.customerId==customer.id">
+                  <td>{{booking.service.category}}</td>
+                  <td>{{booking.timeSlot}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </td>-->
+          </tr>
+          <tr ng-if="customer.expanded" ng-repeat-end="">
+            <td>
+              <table st-table="bookings.list" class="table table-striped">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="booking in bookings.list" ng-if="booking.customerId==customer.id">
+                  <td colspan="2">{{booking.service.category}}</td>
+                  <td colspan="2">{{booking.timeSlot}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
           </tr>
           </tbody>
           <tfoot>
