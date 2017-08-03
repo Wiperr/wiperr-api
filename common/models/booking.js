@@ -82,7 +82,14 @@ module.exports = function(Booking) {
                     paid: false,
                     paymentLink: razorResponse.short_url
                   }).then(() => {
-                    return cb(null, booking);
+                      var date = new Date();
+                      var current_hour = date.getHours()
+                      var userMessage = "";
+                      if(current_hour > 18 || current_hour < 9){
+                        userMessage = " \n You will receive a call on next working day during business hours (9.00 am and 7.00 pm).";
+                      }
+                      console.log("Booking Made at ->> ",current_hour);
+                    return cb(null, userMessage, booking);
                   }).catch(cb);
                 }).catch(cb);
               }).catch(cb);
@@ -195,7 +202,10 @@ module.exports = function(Booking) {
         '"address": "string"\n}'
       }
     ],
-    returns: {type: "object", root: true},
+    returns: [
+      {arg: 'userMessage', type: 'string'},
+      {type: "object", root: true}
+    ],
     http: {path: "/book", verb: "post"}
   });
   Booking.invoiceEmail = (req, res, info, cb) => {
