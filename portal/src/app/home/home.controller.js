@@ -3,7 +3,7 @@ export class HomeController {
                toastr, Coupon, $timeout, $window) {
     'ngInject';
     let self = this;
-
+  
     self.defaults = {
       time: {1: '10:30', 2: '14:00', 3: '16:30'},
       date: {
@@ -77,7 +77,7 @@ export class HomeController {
       self.details.timeSlot = self.details.toDisplayDate;
       WizardHandler.wizard().next();
     };
-
+    
     self.selectPlan = (plan) => {
       self.defaults.selectedPlan = plan;
     };
@@ -170,7 +170,7 @@ export class HomeController {
         appendTo: parentElem
       });
     };
-
+    
     self.exitValidation = () => {
       return self.details.phoneNumber !== '' && self.details.email !== '' &&
         self.details.firstName !== '' && self.details.address !== '';
@@ -191,7 +191,7 @@ export class HomeController {
         address: self.details.address
       }).$promise.then((response) => {
         self.isBooking = false;
-        toastr.success('Thank you', `Your booking for ${response.timeSlot} is confirmed. ${response.userMessage}`);
+        toastr.success('Thank you', `Your booking for ${response.timeSlot} is confirmed`);
         googleTrackConversion('booking-confirmed');
         if (!self.displayBookingForm) {
           clearDetails();
