@@ -218,7 +218,7 @@ angular.module('app')
             templateUrl: 'tpl/page_search.html'
           })
           .state('app.invoice', {
-            url: '/invoice?bookingId;discount',
+            url: '/invoice?bookingId&discount',
             templateUrl: 'tpl/page_invoice.html',
             controller: 'InvoiceCtrl',
             resolve: load([
