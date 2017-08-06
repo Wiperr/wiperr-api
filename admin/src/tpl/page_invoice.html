@@ -61,7 +61,7 @@
         <td>1</td>
         <td>{{bookings.service.name}}</td>
         <td>{{withoutTax | number : 2}}</td>
-        <td>-{{discount}}</td>
+        <td>-{{discount | number : 2}}</td>
         <td>{{(withoutTax-discount) | number : 2}}</td>
       </tr>
       <tr>
