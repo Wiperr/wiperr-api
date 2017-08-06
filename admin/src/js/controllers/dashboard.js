@@ -54,6 +54,7 @@ app
       };
 
       $scope.isVisible = false;
+      $scope.leads = ["Hot", "Warm", "Cold"];
 
       function updateBookingCount() {
         Booking.count().$promise.then(function(response) {
@@ -95,7 +96,7 @@ app
       getMailers();
       getCallRequests();
       getCoupons();
-      
+
       /*Customer.count().$promise.then(function(response) {
        $scope.customers.count = response.count;
        });*/
@@ -191,7 +192,7 @@ app
         return res;
       };
       $scope.d4 = $scope.getRandomData();
-      
+
       $scope.getCustomers = function() {
         Client.getUser().$promise.then(function (response) {
           $scope.customers.list = response;
@@ -201,6 +202,11 @@ app
       $scope.setValue = function(){
         $scope.discount = $scope.discountAmount;
       };
-      
+
       $scope.getCustomers();
+
+      $scope.selectedItemChanged = function(selectedLead,id){
+        Client.updateLead({id: id, lead: selectedLead}).$promise.then(function (response) {
+        });
+      }
     }]);

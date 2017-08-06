@@ -16,6 +16,9 @@
     },
     "externalId": {
       "type": "string"
+    },
+    "lead": {
+      "type": "string"
     }
   },
   "validations": [],
