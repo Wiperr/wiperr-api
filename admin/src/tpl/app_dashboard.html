@@ -205,7 +205,7 @@
       <!-- / latest bookings -->
 
       <!-- tasks -->
-      <td class="panel panel-default" ng-if="bookings.list.length > 0 && bookings.show">
+      <div class="panel panel-default" ng-if="bookings.list.length > 0 && bookings.show">
         <div class="panel-heading">Booking Details</div>
         <div class="panel-body">
           <form>
@@ -420,13 +420,19 @@
       <!-- / tasks -->
 
       <!-- Robin view -->
+      <!-- Customer Details-->
       <div class="panel panel-default" ng-if="customers.list.length > 0 && customers.show">
         <div class="panel-heading">Customer Details</div>
         <div class="panel-body">
           <form>
-            <label>Number of bookings to show per page</label>
-            <input class="input-sm form-control" name="items" id="items" type="number" ng-model="customers.perPage" >
+            <label>Number of customer to show per page</label>
+            <input class="input-sm form-control" name="custView" id="custView" type="number" ng-model="customers.perPage" >
           </form>
+        </div>
+        <div class="panel-body">
+          <label>View Lead by lead status</label>
+          <select ng-model="viewLead" ng-options="x for x in leads">
+          </select>
         </div>
         <table st-table="customers.list" class="table table-striped">
           <thead>
@@ -435,7 +441,8 @@
             <th st-sort="customer.firstName">Customer Name</th>
             <th st-sort="email">Email</th>
             <th st-sort="customer.phoneNumber">Phone Number</th>
-
+            <th>Lead</th>
+            <th>Update Lead</th>
           </tr>
           <!--<tr>
             <th>
@@ -447,7 +454,7 @@
           </tr>-->
          </thead>
           <tbody>
-          <tr ng-repeat-start="customer in customers.list">
+          <tr ng-repeat-start="customer in customers.list" ng-if="customer.lead == viewLead">
             <td>
               <button ng-if="customer.expanded" ng-click="customer.expanded=false">-</button>
               <button ng-if="!customer.expanded" ng-click="customer.expanded=true">+</button>
@@ -455,6 +462,9 @@
             <td>{{customer.firstName | uppercase}}</td>
             <td>{{customer.email}}</td>
             <td>{{customer.phoneNumber}}</td>
+            <td>{{customer.lead}}</td>
+            <td><select ng-model="selectedLead" ng-options="x for x in leads" ng-change="selectedItemChanged(selectedLead,customer.id)">
+            </select></td>
           <!-- <td ng-if="customer.expanded">
 
               <table st-table="bookings.list" class="table table-striped">
@@ -495,6 +505,7 @@
           </tfoot>
         </table>
       </div>
+      <!-- Customer Details End -->
       <!-- / Robin view -->
     </div>
   </div>
