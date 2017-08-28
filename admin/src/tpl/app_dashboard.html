@@ -12,11 +12,11 @@
     <div class="wrapper-md">
       <!-- stats -->
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-12">
           <div class="row row-sm text-center">
             <div class="col-xs-6">
               <div class="panel padder-v item card">
-                <div class="h1 text-info font-thin h1">{{customers.count}}</div>
+                <div class="h1 text-info font-thin h1">{{customers.list.length}}</div>
                 <span class="text-muted text-xs">Total Customers</span>
                 <div class="top text-right w-full">
                   <i class="fa fa-caret-down text-warning m-r-sm"></i>
@@ -50,7 +50,7 @@
                 </div>
               </div>
             </div>-->
-            <div class="col-xs-12 m-b-md">
+            <!--<div class="col-xs-12 m-b-md">
               <div class="r blue-600 item hbox no-border md-whiteframe-z0">
                 <div class="col w-xs v-middle hidden-md">
                   <div ng-init="data1=[60,40]" ui-jq="sparkline" ui-options="{{data1}}, {type:'pie', height:40, sliceColors:['{{app.color.warning}}','#fff']}" class="sparkline inline"></div>
@@ -60,10 +60,10 @@
                   <span class="text-xs">Revenue</span>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
-        <div class="col-md-7">
+        <!--<div class="col-md-7">
           <div class="panel wrapper">
             <label class="i-switch bg-warning pull-right" ng-init="showSpline=true">
               <input type="checkbox" ng-model="showSpline">
@@ -87,7 +87,7 @@
             " style="height:252px" >
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
       <!-- / stats -->
 
@@ -222,7 +222,7 @@
             <th st-sort="lastName">Service Title</th>
             <th st-sort="birthDate">Time Slot</th>
             <th st-sort="price">Price</th>
-            <th>Actions</th>
+           <!-- <th>Actions</th>-->
             <th>Invoice</th>
           </tr>
           <!--<tr>
@@ -234,26 +234,28 @@
             </th>
           </tr>-->
           </thead>
+
+
           <tbody>
-          <tr ng-repeat="booking in bookings.list">
+          <tr ng-repeat="booking in bookings.list | orderBy:'-timeSlot'">
             <td>{{booking.customer.firstName | uppercase}}</td>
             <td>{{booking.customer.email}}</td>
             <td>{{booking.customer.phoneNumber}}</td>
             <td>{{booking.service.category}}</td>
             <td>{{booking.timeSlot}}</td>
             <td>{{booking._payment.amount}}</td>
-            <td>
+            <!--<td>
               <button type="button" ng-click="bookings.removeBooking(booking, $index)" class="btn btn-xs btn-warning">
                 <i class="fa fa-trash"></i>
               </button>
-            </td>
+            </td>-->
             <td><a class="btn btn-info btn-xs" ui-sref='app.invoice({bookingId: "{{booking.id}}", discount: discountAmount})'>
               <i class="fa fa-envelope-square"> Create Invoice</i>
             </a>
             </td>
           </tr>
           <tr>
-            <td colspan="7" class="text-right no-border">
+            <td colspan="6" class="text-right no-border">
               <label>Discount value</label>
             </td>
             <td><input class="input-sm form-control" id="discAmount" type="text" ng-model="discountAmount" ng-init="0"/></td>
