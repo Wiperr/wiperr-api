@@ -18,6 +18,10 @@
     "HEADER" : "Navigation",
     "DASHBOARD" : "Armaturenbrett",
     "CALENDAR" : "Kalender",
+    "LEAD" : "Lead",
+    "BOOKING" : "Booking",
+    "P&L" : "P&L",
+    "CRM" : "CRM",
     "EMAIL" : "E-Mail",
     "WIDGETS" : "Widgets",
     "components" : {

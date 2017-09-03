@@ -17,6 +17,10 @@
   "nav" : {
     "HEADER" : "Navigation",
     "DASHBOARD" : "Dashboard",
+    "LEAD" : "Lead",
+    "BOOKING" : "Booking",
+    "P&L" : "P&L",
+    "CRM" : "CRM",
     "CALENDAR" : "Calendar",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",
