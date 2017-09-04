@@ -17,6 +17,10 @@
   "nav" : {
     "HEADER" : "Navigazione",
     "DASHBOARD" : "Cruscotto",
+    "LEAD" : "Lead",
+    "BOOKING" : "Booking",
+    "P&L" : "P&L",
+    "CRM" : "CRM",
     "CALENDAR" : "Calendario",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",
