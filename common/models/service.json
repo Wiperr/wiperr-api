@@ -31,6 +31,10 @@
     "gst": {
       "type": "number",
       "required": true
+    },
+    "typeOfVehicle": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

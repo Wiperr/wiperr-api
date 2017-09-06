@@ -107,7 +107,7 @@
             <!-- LAYER NR. 4 -->
             <div class="tp-caption sft tp-resizeme"
                  data-x="center"
-                 data-y="525"
+                 data-y="300"
                  data-speed="500"
                  data-start="2500"
                  data-easing="Power3.easeInOut"
@@ -115,9 +115,9 @@
                  data-endelementdelay="0.1"
                  data-linktoslide="next"
                  style="z-index: 12;">
-              <a href="#contact" class="btn-common btn-green bounce-white page-scroll slider-buttons" ng-click="home.toggleCallRequestForm()">Request a call</a>
+              <a href="#contact" class="btn-green bounce-white page-scroll slider-buttons" style="font-size: 100" ng-click="home.toggleCallRequestForm()">Request callback</a>
               <a href="#services" class="btn-common btn-blue bounce-white page-scroll slider-buttons"
-                 ng-click="home.toggleBookingForm()">Book a car wash</a>
+                 ng-click="home.toggleBookingForm()">Book wash</a>
             </div>
           </li>
           <!-- SLIDE  -->
@@ -187,14 +187,14 @@
         <div class="col-md-3 col-sm-3 col-xs-12 text-center" data-wow-duration="500ms" data-wow-delay="300ms">
           <div class="counters-item green row">
             <i class="icon-smile"></i>
-            <h2><strong data-to="1200">0</strong>+</h2>
+            <h2><strong data-to="2000">0</strong>+</h2>
             <p>Happy Customer</p>
           </div>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-12 text-center" data-wow-duration="500ms" data-wow-delay="600ms">
           <div class="counters-item dark_gray row">
             <i class="fa fa-car"></i>
-            <h2><strong data-to="1500">0</strong>+</h2>
+            <h2><strong data-to="2500">0</strong>+</h2>
             <p>Car Washed</p>
           </div>
         </div>
@@ -202,14 +202,14 @@
 
           <div class="counters-item blue row">
             <i class="fa fa-tint"></i>
-            <h2><strong data-to="2">0</strong> lacs</h2>
+            <h2><strong data-to="3">0</strong> lacs</h2>
             <p>Litres of water saved</p>
           </div>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-12 text-center" data-wow-duration="500ms" data-wow-delay="1200ms">
           <div class="counters-item green row">
             <i class="fa fa-users"></i>
-            <h2><strong data-to="5">0</strong></h2>
+            <h2><strong data-to="6">0</strong></h2>
             <p>Cleaning Units</p>
           </div>
         </div>
@@ -260,12 +260,37 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <p class="title" style="color: #07AAA5">Our love for all cars are same, Hence the prices</p>
+          <p class="title" style="color: #07AAA5">Our love for all vehicles are same, Hence the prices</p>
           <h2 class="heading" style="color: #07AAA5">Prices</h2>
         </div>
         <div class="col-md-12">
+          <div>
+            <h1 class="text-center no-border" style="color: #07AAA5">Bike Cleaning<br><br></h1>
+          </div>
           <div class="pricing pricing_tenzin">
-            <div class="pricing_item dark_gray" ng-repeat="service in home.services">
+            <div class="pricing_item dark_gray" ng-repeat="service in home.services" ng-if="service.typeOfVehicle === 'Bike'">
+              <h3 class="pricing_title">{{service.name}}</h3>
+              <div class="pricing_price">
+                <span class="pricing_currency">Rs (inclusive of all taxes)</span>
+                {{(home.defaults.selectedPlan === 'doorstep') ? service.price : service.priceCentre}}
+              </div>
+              <p class="pricing_sentence">{{service.category}}</p>
+              <ul class="pricing_list">
+                <!-- TODO refactor description to details -->
+                <li class="pricing_feature" ng-repeat="detail in service.description">{{detail}}</li>
+              </ul>
+              <a class="pricing_action text-center page-scroll" href="#contact"
+                 page-scroll="" style="background: #07AAA5 !important"
+                 ng-click="home.selectService(service.id)">Choose plan</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div>
+            <h1 class="text-center no-border" style="color: #07AAA5">Car Cleaning<br><br></h1>
+          </div>
+          <div class="pricing pricing_tenzin">
+            <div class="pricing_item dark_gray" ng-repeat="service in home.services" ng-if="service.typeOfVehicle === 'Car'">
               <h3 class="pricing_title">{{service.name}}</h3>
               <div class="pricing_price">
                 <span class="pricing_currency">Rs (inclusive of all taxes)</span>
