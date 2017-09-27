@@ -36,7 +36,7 @@ module.exports.sendEmail = (options, callback) => {
       secure: true,
       auth: {
         user: 'info@wiperr.com',
-        pass: 'sanchaysyed'
+        pass: 'wiperr2020'
       }
     });
 
