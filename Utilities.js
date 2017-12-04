@@ -31,12 +31,10 @@ module.exports.sendEmail = (options, callback) => {
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodeMailer.createTransport({
-      host: 'smtp.zoho.com',
-      port: 465,
-      secure: true,
+      service: 'gmail',
       auth: {
         user: 'info@wiperr.com',
-        pass: 'wildfiresolutions'
+        pass: 'wiperr.info'
       }
     });
 
