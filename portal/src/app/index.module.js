@@ -15,4 +15,16 @@ angular.module('wiperrPortal', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize
   .run(runBlock)
   .controller('HomeController', HomeController)
   .directive('themeMain', ThemeMainDirective)
-  .directive('pageScroll', PageScroll);
+  .directive('pageScroll', PageScroll)
+  .filter('locCtrl', function($log) {
+    return function(input, selection) {
+
+      $log.log(input, selection);
+
+      if (selection === 'centre') {
+        return [input[0]];
+      }
+
+      return input;
+    }
+  });

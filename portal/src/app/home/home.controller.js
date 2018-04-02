@@ -56,7 +56,10 @@ export class HomeController {
       address: "",
       couponCode: "",
       afterDiscount: 0,
-      "locations": {list: ["Gurgaon / South Delhi", "Noida", "Jaipur"], "selected": "Gurgaon / South Delhi"},
+      "locations": {
+        list: ["Gurgaon / South Delhi", "Noida", "Jaipur", "West Delhi"],
+        "selected": "Gurgaon / South Delhi"
+      },
       selectedService: {},
       selectedCoupon: {}
     };
@@ -71,7 +74,8 @@ export class HomeController {
     self.toDisplayDate = "";
 
     self.onSetTime = () => {
-      let formattedDate = self.details.date.toString().replace("00:00:00", `${self.defaults.time[self.details.time]}:00`);
+      let formattedDate = self.details.date.toString().replace("00:00:00",
+        `${self.defaults.time[self.details.time]}:00`);
       let momentDate = moment(formattedDate);
       self.details.toDisplayDate = momentDate.format("dddd, MMMM Do YYYY, h:mm:ss a");
       self.details.timeSlot = self.details.toDisplayDate;

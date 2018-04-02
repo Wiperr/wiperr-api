@@ -717,7 +717,7 @@
                       <label for="locationSelect">Select Location</label>
                       <select id="locationSelect" class="form-control">
                         <!-- TODO dynamically fetch these locations -->
-                        <option ng-repeat="location in home.details.locations.list"
+                        <option ng-repeat="location in home.details.locations.list | locCtrl:home.defaults.selectedPlan"
                                 ng-selected="location === home.details.locations.selected">{{location}}</option>
                       </select>
                     </fieldset>
