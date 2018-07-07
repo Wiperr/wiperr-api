@@ -713,11 +713,11 @@
                        canexit="!contactForm.phoneNumber.$error.pattern && !contactForm.email.$error.pattern && home.exitValidation()">
                 <div class="row">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <fieldset>
+                    <fieldset disabled>
                       <label for="locationSelect">Select Location</label>
                       <select id="locationSelect" class="form-control">
                         <!-- TODO dynamically fetch these locations -->
-                        <option ng-repeat="location in home.details.locations.list | locCtrl:home.defaults.selectedPlan"
+                        <option ng-repeat="location in home.details.locations.list"
                                 ng-selected="location === home.details.locations.selected">{{location}}</option>
                       </select>
                     </fieldset>
@@ -890,8 +890,7 @@
           <p class="title">About Us</p>
           <h2>We're here</h2>
           <p class="margen">
-            LB, AVA Court, Chestnut Street, Sector 47, Gurgaon
-            (Adjacent to Park Hospital)
+            LB, AVA Court, Chestnut Street, Adjacent to Park Hospital, Sector 47, Gurgaon
           </p>
           <p><strong>Phone:</strong> +91 8010145145</p>
           <p><strong>Email:</strong> <a href="#.">info@wiperr.com</a></p>
