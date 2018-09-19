@@ -35,6 +35,7 @@ export class HomeController {
     };
 
     self.modelTemplates = {
+      "aboutUs": "about_us.html",
       "privacyPolicy": "privacy_policy.html",
       "termsConditions": "terms_conditions.html",
       "cancellationPolicy": "cancellation_policy.html"
