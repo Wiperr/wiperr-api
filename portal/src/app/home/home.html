@@ -887,7 +887,7 @@
       </div>
       <div class="col-md-6 block text-center">
         <div class="center">
-          <p class="title">About Us</p>
+          <p class="title">Contact Us</p>
           <h2>We're here</h2>
           <p class="margen">
             LB, AVA Court, Chestnut Street, Adjacent to Park Hospital, Sector 47, Gurgaon
@@ -911,8 +911,9 @@
         <div class="col-md-12 text-center">
           <ul class="breadcrumb">
             <li><a href="#." class="page-scroll">Home</a></li>
-            <li><a href="#about" class="page-scroll">About</a></li>
+            <li><a href="#contact" class="page-scroll">Contact</a></li>
             <li><a href="#publication" class="page-scroll">Blog</a></li>
+            <li><a href="#" ng-click="home.openBox('aboutUs', 'lg')">About Us</a></li>
             <li><a href="#" ng-click="home.openBox('privacyPolicy', 'lg')">Privacy Policy</a></li>
             <li><a href="#" ng-click="home.openBox('termsConditions', 'lg')">Terms & Conditions</a></li>
             <li><a href="#" ng-click="home.openBox('cancellationPolicy', 'lg')">Cancellation Policy</a></li>
@@ -923,9 +924,26 @@
     </div>
   </footer>
 
-  <a href="#." class="go-top text-center"><i class="fa fa-angle-double-up"></i></a>
+  <a href="#" class="go-top text-center"><i class="fa fa-angle-double-up"></i></a>
 </section>
 
+<script type="text/ng-template" id="about_us.html">
+  <div class="modal-header">
+    <h3 class="modal-title">About Us</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      It all started when the founder of Wiperr, realized the need of an organized player in car cleaning space.
+      He was unhappy with his daily cleaning and expensive detailing jobs that used to leave a dent in his pocket.
+      There was a need for a professional company to step-in and offer all kinds of services at the doorstep since
+      it was the most convenient way to avail such kinds of services.
+    </p>
+    <p>
+      Today, we clean over 7000 cars a month and are working very closely with Automobile Manufacturing companies and
+      we are detailing around 250 cars at doorstep in Gurgaon per month.
+    </p>
+  </div>
+</script>
 
 <script type="text/ng-template" id="privacy_policy.html">
   <div class="modal-header">
