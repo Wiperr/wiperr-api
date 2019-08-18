@@ -34,7 +34,7 @@ module.exports.sendEmail = (options, callback) => {
       service: 'gmail',
       auth: {
         user: 'info@wiperr.com',
-        pass: 'wiperr.info'
+        pass: '123@wiperr'
       }
     });
 
