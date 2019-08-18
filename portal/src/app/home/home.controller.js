@@ -14,7 +14,7 @@ export class HomeController {
           formatYear: 'yyyy'
         }
       },
-      selectedPlan: ""
+      selectedPlan: "doorstep"
     };
 
     // Conversion labels

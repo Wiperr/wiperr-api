@@ -50,7 +50,7 @@
                     <a href="https://wiperrcarcare.wordpress.com" class="page-scroll">Blog</a>
                   </li>
                   <li>
-                    <a href="#" class="page-scroll" ng-click="home.toggleBookingForm()">Book A Wash</a>
+                    <a href="#services" class="page-scroll" ng-click="home.toggleBookingForm()">Book A Wash</a>
                   </li>
                 </ul>
               </div>
@@ -116,7 +116,7 @@
                  data-linktoslide="next"
                  style="z-index: 12;">
               <a href="#contact" class="btn-green bounce-white page-scroll slider-buttons" style="font-size: 100" ng-click="home.toggleCallRequestForm()">Request callback</a>
-              <a href="#" class="btn-common btn-blue bounce-white page-scroll slider-buttons"
+              <a href="#services" class="btn-common btn-blue bounce-white page-scroll slider-buttons"
                  ng-click="home.toggleBookingForm()">Book wash</a>
             </div>
           </li>
@@ -279,7 +279,7 @@
                 <!-- TODO refactor description to details -->
                 <li class="pricing_feature" ng-repeat="detail in service.description">{{detail}}</li>
               </ul>
-              <a class="pricing_action text-center page-scroll"
+              <a class="pricing_action text-center page-scroll" href="#contact"
                  page-scroll="" style="background: #07AAA5 !important"
                  ng-click="home.selectService(service.id)">Choose plan</a>
             </div>
@@ -301,7 +301,7 @@
                 <!-- TODO refactor description to details -->
                 <li class="pricing_feature" ng-repeat="detail in service.description">{{detail}}</li>
               </ul>
-              <a class="pricing_action text-center page-scroll"
+              <a class="pricing_action text-center page-scroll" href="#contact"
                  page-scroll="" style="background: #07AAA5 !important"
                  ng-click="home.selectService(service.id)">Choose plan</a>
             </div>
