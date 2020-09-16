@@ -6,7 +6,7 @@
  */
 module.exports = {
   "db": {
-    "url": "mongodb://wiperr-dev:wiperr-dev@ds155097.mlab.com:55097/wiperr-dev",
+    "url": "mongodb://root:7SBVGQAcgx3s@ec2-54-173-224-153.compute-1.amazonaws.com:27017/wiperr-dev",
     "name": "db",
     "connector": "mongodb"
   }
